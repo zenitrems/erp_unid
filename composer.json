@@ -1,0 +1,10 @@
+{
+    "require": {
+        "catfan/medoo": "^1.7",
+        "components/jquery": "^3.5"
+
+    },
+    "config": {
+        "component-dir": "/vendor"
+    }
+}
