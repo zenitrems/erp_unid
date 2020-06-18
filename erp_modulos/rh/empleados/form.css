@@ -1,0 +1,94 @@
+[data-toggle="collapse"] .fa:before {
+    content: "\f139";
+}
+
+[data-toggle="collapse"].collapsed .fa:before {
+    content: "\f13a";
+}
+
+.fa {
+    display: contents;
+}
+
+.main-container {
+    padding: 15px;
+}
+
+.form-container {
+    padding: 15px;
+}
+
+.form-group {
+    margin-bottom: 0;
+}
+
+.form-row{
+    margin-bottom: 10px;
+}
+
+form label {
+    font-size: 13px;
+}
+
+.form-check-inline {
+    margin-right: 0px;
+}
+
+.col-4{
+    height: 75px;
+}
+
+#accordion {
+    padding-bottom: 5px;
+}
+
+.list-group {
+    padding-bottom: 7px;
+}
+
+.list-group-item {
+    display: list-item;
+    margin-bottom: 0px !important;
+}
+
+.popover {
+    max-width: 306.6px;
+    border-radius: 6px;
+    border:none;
+    box-shadow: 0 0 3px 0.5px #b6bdc4;
+    top: 7px !important;
+}
+
+.popover-body {
+    border: none;
+    padding: 20px 35px 20px 35px;
+    color: #2f333b;
+    font-size: 13px;
+    font-style: italic;
+    z-index: 2;
+    line-height: 1.53;
+    letter-spacing: 0.1px;
+}
+
+@media (min-width: 1200px){
+    .container {
+        max-width: 100% !important;
+    }
+}
+
+.save button {
+    width: 20%;
+}
+
+.dropdown-toggle {
+    top: -5px !important;
+    background-color: white;
+    width: 5px;
+}
+.bootstrap-select {
+    padding: 4px 0 0 0 !important;
+}
+
+.form-check label {
+    margin-right: 5px;
+}

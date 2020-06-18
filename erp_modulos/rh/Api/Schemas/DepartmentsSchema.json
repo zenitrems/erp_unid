@@ -1,0 +1,19 @@
+{
+  "type": "object",
+  "title": "Departamentos schema",
+  "default": {},
+  "required": [
+    "name"
+  ],
+  "properties": {
+    "name": {
+      "$id": "#/properties/name",
+      "type": "string",
+      "pattern": "^[A-Za-z\\s]*$",
+      "title": "The name schema",
+      "default": "",
+      "minLength": 1,
+      "maxLength": 50
+    }
+  }
+}

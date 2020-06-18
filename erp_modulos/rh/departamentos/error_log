@@ -1,0 +1,4 @@
+[13-Jun-2020 06:36:05 UTC] PHP Warning:  session_cache_limiter(): Cannot change cache limiter when session is active in /home2/sonicbea/lab.sonicbeamstudio.com.mx/erp_modulos/rh/departamentos/index.php on line 5
+[13-Jun-2020 06:36:05 UTC] PHP Warning:  session_cache_expire(): Cannot change cache expire when session is active in /home2/sonicbea/lab.sonicbeamstudio.com.mx/erp_modulos/rh/departamentos/index.php on line 6
+[13-Jun-2020 06:36:09 UTC] PHP Warning:  session_cache_limiter(): Cannot change cache limiter when session is active in /home2/sonicbea/lab.sonicbeamstudio.com.mx/erp_modulos/rh/departamentos/index.php on line 5
+[13-Jun-2020 06:36:09 UTC] PHP Warning:  session_cache_expire(): Cannot change cache expire when session is active in /home2/sonicbea/lab.sonicbeamstudio.com.mx/erp_modulos/rh/departamentos/index.php on line 6

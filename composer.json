@@ -1,10 +1,18 @@
 {
     "require": {
         "catfan/medoo": "^1.7",
-        "components/jquery": "^3.5"
+        "components/jquery": "^3.5",
+        "opis/json-schema": "^1.0",
+        "ext-json": "*",
+        "ext-pdo": "*"
 
     },
     "config": {
         "component-dir": "/vendor"
+    },
+    "autoload": {
+        "psr-4": {
+            "Api\\": "erp_modulos/rh/api"
+        }
     }
 }

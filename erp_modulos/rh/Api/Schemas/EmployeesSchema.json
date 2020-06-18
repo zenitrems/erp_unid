@@ -1,0 +1,1395 @@
+{
+  "type": "object",
+  "title": "The root schema",
+  "default": {},
+  "required": [
+    "basicData",
+    "personalData"
+  ],
+  "additionalProperties": true,
+  "properties": {
+    "basicData": {
+      "$id": "#/properties/basicData",
+      "type": "object",
+      "title": "The basicData schema",
+      "default": {},
+      "required": [
+        "position",
+        "desiredSalary",
+        "status"
+      ],
+      "additionalProperties": true,
+      "properties": {
+        "position": {
+          "$id": "/properties/basicData/properties/position",
+          "type": "string",
+          "title": "The position schema",
+          "default": "",
+          "minLength": 1,
+          "maxLength": 50
+        },
+        "desiredSalary": {
+          "$id": "/properties/basicData/properties/desiredSalary",
+          "type": ["number", "string"],
+          "title": "The desiredSalary schema",
+          "default": "",
+          "minLength": 1,
+          "maxLength": 50
+        },
+        "approvedSalary": {
+          "$id": "#/properties/basicData/properties/approvedSalary",
+          "type": ["number", "string"],
+          "title": "The approvedSalary schema",
+          "default": "",
+          "maxLength": 50
+        },
+        "status": {
+          "$id": "#/properties/basicData/properties/status",
+          "type": ["number", "string"],
+          "title": "The status schema",
+          "default": "",
+          "minLength": 1,
+          "maxLength": 50
+        },
+        "recruitmentDate": {
+          "$id": "#/properties/basicData/properties/recruitmentDate",
+          "type": "string",
+          "title": "The recruitmentDate schema",
+          "default": "",
+          "maxLength": 50
+        }
+      }
+    },
+    "personalData": {
+      "$id": "#/properties/personalData",
+      "type": "object",
+      "title": "The personalData schema",
+      "default": {},
+      "required": [
+        "lastname",
+        "mothersLastname",
+        "name",
+        "birthDate",
+        "telephone",
+        "nationality",
+        "postalCode",
+        "address",
+        "suburb",
+        "birthPlace",
+        "height",
+        "weight",
+        "gender",
+        "maritalStatus",
+        "livesWith",
+        "dependOn"
+      ],
+      "additionalProperties": true,
+      "properties": {
+        "lastname": {
+          "$id": "#/properties/personalData/properties/lastname",
+          "type": "string",
+          "title": "The lastname schema",
+          "default": "",
+          "minLength": 1,
+          "maxLength": 50
+
+        },
+        "mothersLastname": {
+          "$id": "#/properties/personalData/properties/mothersLastname",
+          "type": "string",
+          "title": "The mothersLastname schema",
+          "default": "",
+          "minLength": 1,
+          "maxLength": 50
+        },
+        "name": {
+          "$id": "#/properties/personalData/properties/name",
+          "type": "string",
+          "title": "The name schema",
+          "default": "",
+          "minLength": 1,
+          "maxLength": 50
+        },
+        "birthDate": {
+          "$id": "#/properties/personalData/properties/birthDate",
+          "type": "string",
+          "title": "The birthDate schema",
+          "default": "",
+          "minLength": 1,
+          "maxLength": 50
+        },
+        "telephone": {
+          "$id": "#/properties/personalData/properties/telephone",
+          "type": "string",
+          "title": "The telephone schema",
+          "default": "",
+          "minLength": 1,
+          "maxLength": 50
+        },
+        "nationality": {
+          "$id": "#/properties/personalData/properties/nationality",
+          "type": "string",
+          "title": "The nationality schema",
+          "default": "",
+          "minLength": 1,
+          "maxLength": 50
+        },
+        "postalCode": {
+          "$id": "#/properties/personalData/properties/postalCode",
+          "type": "string",
+          "title": "The postalCode schema",
+          "default": "",
+          "minLength": 1,
+          "maxLength": 50
+        },
+        "address": {
+          "$id": "#/properties/personalData/properties/address",
+          "type": "string",
+          "title": "The address schema",
+          "default": "",
+          "minLength": 1,
+          "maxLength": 150
+        },
+        "suburb": {
+          "$id": "#/properties/personalData/properties/suburb",
+          "type": "string",
+          "title": "The suburb schema",
+          "default": "",
+          "minLength": 1,
+          "maxLength": 50
+        },
+        "birthPlace": {
+          "$id": "#/properties/personalData/properties/birthPlace",
+          "type": "string",
+          "title": "The birthPlace schema",
+          "default": "",
+          "minLength": 1,
+          "maxLength": 50
+        },
+        "height": {
+          "$id": "#/properties/personalData/properties/height",
+          "type": "string",
+          "title": "The height schema",
+          "default": "",
+          "minLength": 1,
+          "maxLength": 50
+        },
+        "weight": {
+          "$id": "#/properties/personalData/properties/weight",
+          "type": "string",
+          "title": "The weight schema",
+          "default": "",
+          "minLength": 1,
+          "maxLength": 50
+        },
+        "gender": {
+          "$id": "#/properties/personalData/properties/gender",
+          "type": "string",
+          "title": "The gender schema",
+          "default": "",
+          "minLength": 1,
+          "maxLength": 50
+        },
+        "otherGender": {
+          "$id": "#/properties/personalData/properties/otherGender",
+          "type": "string",
+          "title": "The otherGender schema",
+          "default": "",
+          "maxLength": 50
+        },
+        "maritalStatus": {
+          "$id": "#/properties/personalData/properties/maritalStatus",
+          "type": "string",
+          "title": "The maritalStatus schema",
+          "default": "",
+          "minLength": 1,
+          "maxLength": 50
+        },
+        "livesWith": {
+          "$id": "#/properties/personalData/properties/livesWith",
+          "type": "string",
+          "title": "The livesWith schema",
+          "default": "",
+          "minLength": 1,
+          "maxLength": 50
+        },
+        "dependOn": {
+          "$id": "#/properties/personalData/properties/dependOn",
+          "type": "string",
+          "title": "The dependOn schema",
+          "default": "",
+          "minLength": 1,
+          "maxLength": 50
+        }
+      }
+    },
+    "documentationData": {
+      "$id": "#/properties/documentationData",
+      "type": "object",
+      "title": "The documentationData schema",
+      "default": {},
+      "required": [
+        "curp",
+        "rfc",
+        "nss",
+        "driversLicence"
+      ],
+      "additionalProperties": true,
+      "properties": {
+        "curp": {
+          "$id": "#/properties/documentationData/properties/curp",
+          "type": "string",
+          "title": "The curp schema",
+          "default": "",
+          "minLength": 1,
+          "maxLength": 50
+
+        },
+        "afore": {
+          "$id": "#/properties/documentationData/properties/afore",
+          "type": "string",
+          "title": "The afore schema",
+          "default": "",
+          "maxLength": 50
+        },
+        "rfc": {
+          "$id": "#/properties/documentationData/properties/rfc",
+          "type": "string",
+          "title": "The rfc schema",
+          "default": "",
+          "minLength": 1,
+          "maxLength": 50
+        },
+        "nss": {
+          "$id": "#/properties/documentationData/properties/nss",
+          "type": "string",
+          "title": "The nss schema",
+          "default": "",
+          "minLength": 1,
+          "maxLength": 50
+        },
+        "militarPrimer": {
+          "$id": "#/properties/documentationData/properties/militarPrimer",
+          "type": "string",
+          "title": "The militarPrimer schema",
+          "default": "",
+          "maxLength": 50
+        },
+        "passport": {
+          "$id": "#/properties/documentationData/properties/passport",
+          "type": "string",
+          "title": "The passport schema",
+          "default": "",
+          "maxLength": 50
+        },
+        "driversLicence": {
+          "$id": "#/properties/documentationData/properties/driversLicence",
+          "type": "string",
+          "title": "The driversLicence schema",
+          "default": "",
+          "minLength": 1,
+          "maxLength": 50
+        },
+        "driversLicenceNumber": {
+          "$id": "#/properties/documentationData/properties/driversLicenceNumber",
+          "type": "string",
+          "title": "The driversLicenceNumber schema",
+          "default": "",
+          "maxLength": 50
+        },
+        "foreignDocuments": {
+          "$id": "#/properties/documentationData/properties/foreignDocuments",
+          "type": "string",
+          "title": "The foreignDocuments schema",
+          "default": "",
+          "maxLength": 150
+        }
+      }
+    },
+    "healthData": {
+      "$id": "#/properties/healthData",
+      "type": "object",
+      "title": "The healthData schema",
+      "default": {},
+      "required": [
+        "health",
+        "chronicDisease",
+        "sport",
+        "lifeGoal",
+        "hobby",
+        "socialClub"
+      ],
+      "additionalProperties": true,
+      "properties": {
+        "health": {
+          "$id": "#/properties/healthData/properties/health",
+          "type": "string",
+          "title": "The health schema",
+          "default": "",
+          "minLength": 1,
+          "maxLength": 50
+        },
+        "chronicDisease": {
+          "$id": "#/properties/healthData/properties/chronicDisease",
+          "type": "string",
+          "title": "The chronicDisease schema",
+          "default": "",
+          "minLength": 1,
+          "maxLength": 50
+        },
+        "chronicDiseaseName": {
+          "$id": "#/properties/healthData/properties/chronicDiseaseName",
+          "type": "string",
+          "title": "The chronicDiseaseName schema",
+          "default": "",
+          "maxLength": 50
+        },
+        "sport": {
+          "$id": "#/properties/healthData/properties/sport",
+          "type": "string",
+          "title": "The sport schema",
+          "default": "",
+          "minLength": 1,
+          "maxLength": 50
+        },
+        "sportName": {
+          "$id": "#/properties/healthData/properties/sportName",
+          "type": "string",
+          "title": "The sportName schema",
+          "default": "",
+          "maxLength": 50
+        },
+        "lifeGoal": {
+          "$id": "#/properties/healthData/properties/lifeGoal",
+          "type": "string",
+          "title": "The lifeGoal schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": "",
+          "minLength": 1,
+          "maxLength": 150
+        },
+        "hobby": {
+          "$id": "#/properties/healthData/properties/hobby",
+          "type": "string",
+          "title": "The hobby schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": "",
+          "minLength": 1,
+          "maxLength": 50
+        },
+        "socialClub": {
+          "$id": "#/properties/healthData/properties/socialClub",
+          "type": "string",
+          "title": "The socialClub schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": "",
+          "minLength": 1,
+          "maxLength": 50
+        },
+        "socialClubName": {
+          "$id": "#/properties/healthData/properties/socialClubName",
+          "type": "string",
+          "title": "The socialClubName schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": "",
+          "maxLength": 50
+        }
+      }
+    },
+    "relativesData": {
+      "$id": "#/properties/relativesData",
+      "type": "object",
+      "title": "The relativesData schema",
+      "default": {},
+      "required": [
+        "fatherName",
+        "fatherAddress",
+        "fatherJob",
+        "fatherStatus",
+        "motherName",
+        "motherAddress",
+        "motherJob",
+        "motherStatus"
+      ],
+      "additionalProperties": true,
+      "properties": {
+        "fatherName": {
+          "$id": "#/properties/relativesData/properties/fatherName",
+          "type": "string",
+          "title": "The fatherName schema",
+          "default": "",
+          "minLength": 1,
+          "maxLength": 150
+        },
+        "fatherAddress": {
+          "$id": "#/properties/relativesData/properties/fatherAddress",
+          "type": "string",
+          "title": "The fatherAddress schema",
+          "default": "",
+          "minLength": 1,
+          "maxLength": 150
+        },
+        "fatherJob": {
+          "$id": "#/properties/relativesData/properties/fatherJob",
+          "type": "string",
+          "title": "The fatherJob schema",
+          "default": "",
+          "minLength": 1,
+          "maxLength": 50
+        },
+        "fatherStatus": {
+          "$id": "#/properties/relativesData/properties/fatherStatus",
+          "type": "string",
+          "title": "The fatherStatus schema",
+          "default": "",
+          "minLength": 1,
+          "maxLength": 50
+        },
+        "motherName": {
+          "$id": "#/properties/relativesData/properties/motherName",
+          "type": "string",
+          "title": "The motherName schema",
+          "default": "",
+          "minLength": 1,
+          "maxLength": 150
+        },
+        "motherAddress": {
+          "$id": "#/properties/relativesData/properties/motherAddress",
+          "type": "string",
+          "title": "The motherAddress schema",
+          "default": "",
+          "minLength": 1,
+          "maxLength": 150
+        },
+        "motherJob": {
+          "$id": "#/properties/relativesData/properties/motherJob",
+          "type": "string",
+          "title": "The motherJob schema",
+          "default": "",
+          "minLength": 1,
+          "maxLength": 50
+        },
+        "motherStatus": {
+          "$id": "#/properties/relativesData/properties/motherStatus",
+          "type": "string",
+          "title": "The motherStatus schema",
+          "default": "",
+          "minLength": 1,
+          "maxLength": 50
+        },
+        "spouseName": {
+          "$id": "#/properties/relativesData/properties/spouse/spouseName",
+          "type": "string",
+          "title": "The spouseName schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": "",
+          "maxLength": 50
+        },
+        "spouseAddress": {
+          "$id": "#/properties/relativesData/properties/spouse/spouseAddress",
+          "type": "string",
+          "title": "The spouseAddress schema",
+          "default": "",
+          "maxLength": 150
+        },
+        "spouseJob": {
+          "$id": "#/properties/relativesData/properties/spouse/spouseJob",
+          "type": "string",
+          "title": "The spouseJob schema",
+          "default": "",
+          "maxLength": 50
+        },
+        "spouseStatus": {
+          "$id": "#/properties/relativesData/properties/spouse/spouseStatus",
+          "type": "string",
+          "title": "The spouseStatus schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": "",
+          "maxLength": 50
+        },
+        "children": {
+          "$id": "#/properties/children",
+          "type": "array",
+          "title": "The children schema",
+          "default": [],
+          "additionalProperties": true,
+          "items": {
+            "child": {
+              "type": "object",
+              "required": [
+                "childrenName",
+                "childrenAge"
+              ],
+              "properties": {
+                "childrenName": {
+                  "$id": "#/properties/relativesData/properties/children/child/childrenName",
+                  "type": "string",
+                  "title": "The childrenName schema",
+                  "default": "",
+                  "minLength": 1,
+                  "maxLength": 50
+                },
+                "childrenAge": {
+                  "$id": "#/properties/relativesData/properties/children/child/childrenAge",
+                  "type": "string",
+                  "title": "The childrenAge schema",
+                  "default": "",
+                  "minLength": 1,
+                  "maxLength": 50
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "scholarData": {
+      "$id": "#/properties/scholarData",
+      "type": "object",
+      "title": "The scholarData schema",
+      "default": {},
+      "required": [
+        "elementarySchoolName",
+        "elementarySchoolAddress",
+        "elementarySchoolFrom",
+        "elementarySchoolTo",
+        "elementarySchoolDegree"
+      ],
+      "additionalProperties": true,
+      "properties": {
+        "elementarySchoolName": {
+          "$id": "#/properties/scholarData/properties/elementarySchoolName",
+          "type": "string",
+          "title": "The elementarySchoolName schema",
+          "default": "",
+          "minLength": 1,
+          "maxLength": 50
+        },
+        "elementarySchoolAddress": {
+          "$id": "#/properties/scholarData/properties/elementarySchoolAddress",
+          "type": "string",
+          "title": "The elementarySchoolAddress schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": "",
+          "minLength": 1,
+          "maxLength": 150
+        },
+        "elementarySchoolFrom": {
+          "$id": "#/properties/scholarData/properties/elementarySchoolFrom",
+          "type": "string",
+          "title": "The elementarySchoolFrom schema",
+          "default": "",
+          "minLength": 1,
+          "maxLength": 50
+        },
+        "elementarySchoolTo": {
+          "$id": "#/properties/scholarData/properties/elementarySchoolTo",
+          "type": "string",
+          "title": "The elementarySchoolTo schema",
+          "default": "",
+          "minLength": 1,
+          "maxLength": 50
+        },
+        "elementarySchoolDegree": {
+          "$id": "#/properties/scholarData/properties/elementarySchoolDegree",
+          "type": "string",
+          "title": "The elementarySchoolDegree schema",
+          "default": "",
+          "minLength": 1,
+          "maxLength": 50
+        },
+        "juniorHighName": {
+          "$id": "#/properties/scholarData/properties/juniorHigh/juniorHighName",
+          "type": "string",
+          "title": "The juniorHighName schema",
+          "default": "",
+          "maxLength": 50
+        },
+        "juniorHighAddress": {
+          "$id": "#/properties/scholarData/properties/juniorHigh/juniorHighAddress",
+          "type": "string",
+          "title": "The juniorHighAddress schema",
+          "default": "",
+          "maxLength": 150
+        },
+        "juniorHighFrom": {
+          "$id": "#/properties/scholarData/properties/juniorHigh/juniorHighFrom",
+          "type": "string",
+          "title": "The juniorHighFrom schema",
+          "default": "",
+          "maxLength": 50
+        },
+        "juniorHighTo": {
+          "$id": "#/properties/scholarData/properties/juniorHigh/juniorHighTo",
+          "type": "string",
+          "title": "The juniorHighTo schema",
+          "default": "",
+          "maxLength": 50
+        },
+        "juniorHighDegree": {
+          "$id": "#/properties/scholarData/properties/juniorHigh/juniorHighDegree",
+          "type": "string",
+          "title": "The juniorHighDegree schema",
+          "default": "",
+          "maxLength": 50
+        },
+        "highSchoolName": {
+          "$id": "#/properties/scholarData/properties/highSchool/highSchoolName",
+          "type": "string",
+          "title": "The highSchoolName schema",
+          "default": "",
+          "maxLength": 50
+        },
+        "highSchoolAddress": {
+          "$id": "#/properties/scholarData/properties/highSchool/highSchoolAddress",
+          "type": "string",
+          "title": "The highSchoolAddress schema",
+          "default": "",
+          "maxLength": 150
+        },
+        "highSchoolFrom": {
+          "$id": "#/properties/scholarData/properties/highSchool/highSchoolFrom",
+          "type": "string",
+          "title": "The highSchoolFrom schema",
+          "default": "",
+          "maxLength": 50
+        },
+        "highSchoolTo": {
+          "$id": "#/properties/scholarData/properties/highSchool/highSchoolTo",
+          "type": "string",
+          "title": "The highSchoolTo schema",
+          "default": "",
+          "maxLength": 50
+        },
+        "highSchoolDegree": {
+          "$id": "#/properties/scholarData/properties/highSchool/highSchoolDegree",
+          "type": "string",
+          "title": "The highSchoolDegree schema",
+          "default": "",
+          "maxLength": 50
+        },
+        "professionalSchoolName": {
+          "$id": "#/properties/scholarData/properties/professionalSchool/professionalSchoolName",
+          "type": "string",
+          "title": "The professionalSchoolName schema",
+          "default": "",
+          "maxLength": 50
+        },
+        "professionalSchoolAddress": {
+          "$id": "#/properties/scholarData/properties/professionalSchool/professionalSchoolAddress",
+          "type": "string",
+          "title": "The professionalSchoolAddress schema",
+          "default": "",
+          "maxLength": 150
+        },
+        "professionalSchoolFrom": {
+          "$id": "#/properties/scholarData/properties/professionalSchool/professionalSchoolFrom",
+          "type": "string",
+          "title": "The professionalSchoolFrom schema",
+          "default": "",
+          "maxLength": 50
+        },
+        "professionalSchoolTo": {
+          "$id": "#/properties/scholarData/properties/professionalSchool/professionalSchoolTo",
+          "type": "string",
+          "title": "The professionalSchoolTo schema",
+          "default": "",
+          "maxLength": 50
+        },
+        "professionalSchoolDegree": {
+          "$id": "#/properties/scholarData/properties/professionalSchool/professionalSchoolDegree",
+          "type": "string",
+          "title": "The professionalSchoolDegree schema",
+          "default": "",
+          "maxLength": 50
+        },
+        "otherSchools": {
+          "$id": "#/properties/otherSchools",
+          "type": "array",
+          "title": "The otherSchools schema",
+          "default": [],
+          "additionalProperties": true,
+          "items": {
+            "otherSchool": {
+              "type": "object",
+              "required": [
+                "otherSchoolName",
+                "otherSchoolAddress",
+                "otherSchoolFrom",
+                "otherSchoolTo",
+                "otherSchoolDegree"
+              ],
+              "properties": {
+                "otherSchoolName": {
+                  "$id": "#/properties/scholarData/properties/otherSchools/otherSchool/otherSchoolName",
+                  "type": "string",
+                  "title": "The otherSchoolName schema",
+                  "default": "",
+                  "minLength": 1,
+                  "maxLength": 50
+                },
+                "otherSchoolAddress": {
+                  "$id": "#/properties/scholarData/properties/otherSchools/otherSchool/otherSchoolAddress",
+                  "type": "string",
+                  "title": "The otherSchoolAddress schema",
+                  "default": "",
+                  "minLength": 1,
+                  "maxLength": 50
+                },
+                "otherSchoolFrom": {
+                  "$id": "#/properties/scholarData/properties/otherSchools/otherSchool/otherSchoolFrom",
+                  "type": "string",
+                  "title": "The otherSchoolFrom schema",
+                  "default": "",
+                  "minLength": 1,
+                  "maxLength": 50
+                },
+                "otherSchoolTo": {
+                  "$id": "#/properties/scholarData/properties/otherSchools/otherSchool/otherSchoolTo",
+                  "type": "string",
+                  "title": "The otherSchoolTo schema",
+                  "default": "",
+                  "minLength": 1,
+                  "maxLength": 50
+                },
+                "otherSchoolDegree": {
+                  "$id": "#/properties/scholarData/properties/otherSchools/otherSchool/otherSchoolDegree",
+                  "type": "string",
+                  "title": "The otherSchoolDegree schema",
+                  "default": "",
+                  "minLength": 1,
+                  "maxLength": 50
+                }
+              }
+            }
+          }
+        },
+        "currentStudies": {
+          "$id": "#/properties/currentStudies",
+          "type": "array",
+          "title": "The currentStudies schema",
+          "default": [],
+          "additionalProperties": true,
+          "items": {
+            "currentStudy": {
+              "type": "object",
+              "required": [
+                "currentStudyName",
+                "currentStudyScheduleFrom",
+                "currentStudyScheduleTo",
+                "currentStudyDegree",
+                "currentStudyGrade"
+              ],
+              "properties": {
+                "currentStudyName": {
+                  "$id": "#/properties/scholarData/properties/currentStudies/currentStudy/currentStudyName",
+                  "type": "string",
+                  "title": "The currentStudyName schema",
+                  "default": "",
+                  "minLength": 1,
+                  "maxLength": 50
+                },
+                "currentStudyScheduleFrom": {
+                  "$id": "#/properties/scholarData/properties/currentStudies/currentStudy/currentStudyScheduleFrom",
+                  "type": "string",
+                  "title": "The currentStudyScheduleFrom schema",
+                  "default": "",
+                  "minLength": 1,
+                  "maxLength": 50
+                },
+                "currentStudyScheduleTo": {
+                  "$id": "#/properties/scholarData/properties/currentStudies/currentStudy/currentStudyScheduleTo",
+                  "type": "string",
+                  "title": "The currentStudyScheduleTo schema",
+                  "default": "",
+                  "minLength": 1,
+                  "maxLength": 50
+                },
+                "currentStudyDegree": {
+                  "$id": "#/properties/scholarData/properties/currentStudies/currentStudy/currentStudyDegree",
+                  "type": "string",
+                  "title": "The currentStudyDegree schema",
+                  "default": "",
+                  "minLength": 1,
+                  "maxLength": 50
+                },
+                "currentStudyGrade": {
+                  "$id": "#/properties/scholarData/properties/currentStudies/currentStudy/currentStudyGrade",
+                  "type": "string",
+                  "title": "The currentStudyGrade schema",
+                  "default": "",
+                  "minLength": 1,
+                  "maxLength": 50
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "knowledgeData": {
+      "$id": "#/properties/knowledgeData",
+      "type": "object",
+      "title": "The knowledgeData schema",
+      "default": {},
+      "additionalProperties": true,
+      "properties": {
+        "functions": {
+          "$id": "#/properties/functions",
+          "type": "array",
+          "title": "The functions schema",
+          "default": [],
+          "additionalProperties": true,
+          "items": {
+            "function": {
+              "type": "object",
+              "required": [
+                "functionName"
+              ],
+              "properties": {
+                "functionName": {
+                  "$id": "#/properties/knowledgeData/properties/functions/function/functionName",
+                  "type": "string",
+                  "title": "The functionName schema",
+                  "default": "",
+                  "minLength": 1,
+                  "maxLength": 50
+                }
+              }
+            }
+          }
+        },
+        "softwares": {
+          "$id": "#/properties/software",
+          "type": "array",
+          "title": "The software schema",
+          "default": [],
+          "additionalProperties": true,
+          "items": {
+            "softwares": {
+              "type": "object",
+              "required": [
+                "softwareName"
+              ],
+              "properties": {
+                "softwareName": {
+                  "$id": "#/properties/knowledgeData/properties/softwares/software/softwareName",
+                  "type": "string",
+                  "title": "The softwareName schema",
+                  "default": "",
+                  "minLength": 1,
+                  "maxLength": 50
+                }
+              }
+            }
+          }
+        },
+        "languages": {
+          "$id": "#/properties/languages",
+          "type": "array",
+          "title": "The languages schema",
+          "default": [],
+          "additionalProperties": true,
+          "items": {
+            "language": {
+              "type": "object",
+              "required": [
+                "languageName",
+                "languagePercent"
+              ],
+              "properties": {
+                "languageName": {
+                  "$id": "#/properties/knowledgeData/properties/language/languages/languageName",
+                  "type": "string",
+                  "title": "The languageName schema",
+                  "description": "An explanation about the purpose of this instance.",
+                  "default": "",
+                  "minLength": 1,
+                  "maxLength": 50
+                },
+                "languagePercent": {
+                  "$id": "#/properties/knowledgeData/properties/language/languages/languagePercent",
+                  "type": "string",
+                  "title": "The languagePercent schema",
+                  "description": "An explanation about the purpose of this instance.",
+                  "default": "",
+                  "minLength": 1,
+                  "maxLength": 50
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "previousJobsData": {
+      "$id": "#/properties/previousJobsData",
+      "type": "array",
+      "title": "The previousJobsData schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": [],
+      "additionalProperties": true,
+      "items": {
+        "previousCompanies": {
+          "type": "object",
+          "required": [
+            "previousCompanyName",
+            "previousCompanyNameAddress",
+            "previousCompanyTelephone",
+            "previousCompanyPosition",
+            "previousCompanyFrom",
+            "previousCompanyTo",
+            "previousCompanyReferences",
+            "previousCompanyInitialSalary",
+            "previousCompanyChiefName"
+          ],
+          "properties": {
+            "previousCompanyName": {
+              "$id": "#/properties/previousJobsData/properties/previousCompanyName",
+              "type": "string",
+              "title": "The previousCompanyName schema",
+              "default": "",
+              "minLength": 1,
+              "maxLength": 50
+            },
+            "previousCompanyNameAddress": {
+              "$id": "#/properties/previousJobsData/properties/previousCompanyNameAddress",
+              "type": "string",
+              "title": "The previousCompanyNameAddress schema",
+              "default": "",
+              "minLength": 1,
+              "maxLength": 150
+
+            },
+            "previousCompanyTelephone": {
+              "$id": "#/properties/previousJobsData/properties/previousCompanyTelephone",
+              "type": "string",
+              "title": "The previousCompanyTelephone schema",
+              "default": "",
+              "minLength": 1,
+              "maxLength": 50
+
+            },
+            "previousCompanyPosition": {
+              "$id": "#/properties/previousJobsData/properties/previousCompanyPosition",
+              "type": "string",
+              "title": "The previousCompanyPosition schema",
+              "default": "",
+              "minLength": 1,
+              "maxLength": 50
+
+            },
+            "previousCompanyFrom": {
+              "$id": "#/properties/previousJobsData/properties/previousCompanyFrom",
+              "type": "string",
+              "title": "The previousCompanyFrom schema",
+              "default": "",
+              "minLength": 1,
+              "maxLength": 50
+
+            },
+            "previousCompanyTo": {
+              "$id": "#/properties/previousJobsData/properties/previousCompanyTo",
+              "type": "string",
+              "title": "The previousCompanyTo schema",
+              "default": "",
+              "minLength": 1,
+              "maxLength": 50
+            },
+            "previousCompanyReferences": {
+              "$id": "#/properties/previousJobsData/properties/previousCompanyReferences",
+              "type": "string",
+              "title": "The previousCompanyReferences schema",
+              "default": "",
+              "minLength": 1,
+              "maxLength": 150
+            },
+            "previousCompanyReferencesReasons": {
+              "$id": "#/properties/previousJobsData/properties/previousCompanyReferencesReasons",
+              "type": "string",
+              "title": "The previousCompanyReferencesReasons schema",
+              "default": "",
+              "minLength": 1,
+              "maxLength": 150
+            },
+            "previousCompanyComments": {
+              "$id": "#/properties/previousJobsData/properties/previousCompanyComments",
+              "type": "string",
+              "title": "The previousCompanyComments schema",
+              "default": "",
+              "minLength": 1,
+              "maxLength": 150
+            },
+            "previousCompanyInitialSalary": {
+              "$id": "#/properties/previousJobsData/properties/previousCompanyInitialSalary",
+              "type": "string",
+              "title": "The previousCompanyInitialSalary schema",
+              "default": "",
+              "minLength": 1,
+              "maxLength": 50
+            },
+            "previousCompanyFinalSalary": {
+              "$id": "#/properties/previousJobsData/properties/previousCompanyFinalSalary",
+              "type": "string",
+              "title": "The previousCompanyFinalSalary schema",
+              "default": "",
+              "minLength": 1,
+              "maxLength": 50
+            },
+            "previousCompanySeparation": {
+              "$id": "#/properties/previousJobsData/properties/previousCompanySeparation",
+              "type": "string",
+              "title": "The previousCompanySeparation schema",
+              "default": "",
+              "minLength": 1,
+              "maxLength": 150
+            },
+            "previousCompanyChiefName": {
+              "$id": "#/properties/previousJobsData/properties/previousCompanyChiefName",
+              "type": "string",
+              "title": "The previousCompanyChiefName schema",
+              "default": "",
+              "minLength": 1,
+              "maxLength": 50
+            }
+          }
+        }
+      }
+    },
+    "personalReferencesData": {
+      "$id": "#/properties/personalReferencesData",
+      "type": "array",
+      "title": "The personalReferencesData schema",
+      "default": [],
+      "additionalProperties": true,
+      "items": {
+        "reference": {
+          "type": "object",
+          "required": [
+            "referenceName",
+            "referenceAddress",
+            "referencePhone",
+            "referenceOccupation",
+            "referenceTime"
+          ],
+          "properties": {
+            "referenceName": {
+              "$id": "#/properties/personalReferencesData/properties/referenceName",
+              "type": "string",
+              "title": "The referenceName schema",
+              "default": "",
+              "minLength": 1,
+              "maxLength": 50
+            },
+            "referenceAddress": {
+              "$id": "#/properties/personalReferencesData/properties/referenceAddress",
+              "type": "string",
+              "title": "The referenceAddress schema",
+              "default": "",
+              "minLength": 1,
+              "maxLength": 150
+            },
+            "referencePhone": {
+              "$id": "#/properties/personalReferencesData/properties/referencePhone",
+              "type": "string",
+              "title": "The referencePhone schema",
+              "default": "",
+              "minLength": 1,
+              "maxLength": 50
+            },
+            "referenceOccupation": {
+              "$id": "#/properties/personalReferencesData/properties/referenceOccupation",
+              "type": "string",
+              "title": "The referenceOccupation schema",
+              "default": "",
+              "minLength": 1,
+              "maxLength": 50
+            },
+            "referenceTime": {
+              "$id": "#/properties/personalReferencesData/properties/referenceTime",
+              "type": "string",
+              "title": "The referenceTime schema",
+              "default": "",
+              "minLength": 1,
+              "maxLength": 50
+            }
+          }
+        }
+      }
+    },
+    "generalData": {
+      "$id": "#/properties/generalData",
+      "type": "object",
+      "title": "The generalData schema",
+      "default": {},
+      "required": [
+        "isBonded",
+        "isUnionized",
+        "isInsured",
+        "canTravel",
+        "canMove"
+      ],
+      "additionalProperties": true,
+      "properties": {
+        "isBonded": {
+          "$id": "#/properties/generalData/properties/isBonded",
+          "type": "string",
+          "title": "The isBonded schema",
+          "default": "",
+          "minLength": 1,
+          "maxLength": 50
+        },
+        "isBondedAgency": {
+          "$id": "#/properties/generalData/properties/isBondedAgency",
+          "type": "string",
+          "title": "The isBondedAgency schema",
+          "default": "",
+          "maxLength": 50
+        },
+        "isUnionized": {
+          "$id": "#/properties/generalData/properties/isUnionized",
+          "type": "string",
+          "title": "The isUnionized schema",
+          "default": "",
+          "minLength": 1,
+          "maxLength": 50
+        },
+        "isUnionizedUnion": {
+          "$id": "#/properties/generalData/properties/isUnionizedUnion",
+          "type": "string",
+          "title": "The isUnionizedUnion schema",
+          "default": "",
+          "maxLength": 50
+        },
+        "startingDate": {
+          "$id": "#/properties/generalData/properties/startingDate",
+          "type": "string",
+          "title": "The startingDate schema",
+          "default": "",
+          "maxLength": 50
+        },
+        "isInsured": {
+          "$id": "#/properties/generalData/properties/isInsured",
+          "type": "string",
+          "title": "The isInsured schema",
+          "default": "",
+          "minLength": 1,
+          "maxLength": 50
+        },
+        "isInsuredAgency": {
+          "$id": "#/properties/generalData/properties/isInsuredAgency",
+          "type": "string",
+          "title": "The isInsuredAgency schema",
+          "default": "",
+          "maxLength": 50
+        },
+        "canTravel": {
+          "$id": "#/properties/generalData/properties/canTravel",
+          "type": "string",
+          "title": "The canTravel schema",
+          "default": "",
+          "minLength": 1,
+          "maxLength": 50
+        },
+        "canTravelReason": {
+          "$id": "#/properties/generalData/properties/canTravelReason",
+          "type": "string",
+          "title": "The canTravelReason schema",
+          "default": "",
+          "maxLength": 150
+        },
+        "canMove": {
+          "$id": "#/properties/generalData/properties/canMove",
+          "type": "string",
+          "title": "The canMove schema",
+          "default": "",
+          "minLength": 1,
+          "maxLength": 50
+        },
+        "canMoveReason": {
+          "$id": "#/properties/generalData/properties/canMoveReason",
+          "type": "string",
+          "title": "The canMoveReason schema",
+          "default": "",
+          "maxLength": 150
+        },
+        "workingRelatives" : {
+          "$id": "#/properties/workingRelative",
+          "type": "array",
+          "title": "The workingRelative schema",
+          "default": [],
+          "additionalProperties": true,
+          "items": {
+            "workingRelative": {
+              "type": "object",
+              "required": [
+                "workingRelativeName",
+                "workingRelativeOccupation",
+                "workingRelativeRelationship"
+              ],
+              "properties": {
+                "workingRelativeName": {
+                  "$id": "#/properties/generalData/properties/workingRelativeName",
+                  "type": "string",
+                  "title": "The workingRelativeName schema",
+                  "default": "",
+                  "minLength": 1,
+                  "maxLength": 50
+                },
+                "workingRelativeOccupation": {
+                  "$id": "#/properties/generalData/properties/workingRelativeOccupation",
+                  "type": "string",
+                  "title": "The workingRelativeOccupation schema",
+                  "default": "",
+                  "minLength": 1,
+                  "maxLength": 50
+                },
+                "workingRelativeRelationship": {
+                  "$id": "#/properties/generalData/properties/workingRelativeRelationship",
+                  "type": "string",
+                  "title": "The workingRelativeRelationship schema",
+                  "default": "",
+                  "minLength": 1,
+                  "maxLength": 50
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "economicData": {
+      "$id": "#/properties/economicData",
+      "type": "object",
+      "title": "The economicData schema",
+      "default": {},
+      "required": [
+        "workingSpouse",
+        "ownedHouse",
+        "payRent",
+        "ownCar",
+        "hasDebts",
+        "monthlyExpenses"
+      ],
+      "additionalProperties": true,
+      "properties": {
+        "workingSpouse": {
+          "$id": "#/properties/economicData/properties/workingSpouse",
+          "type": "string",
+          "title": "The workingSpouse schema",
+          "default": "",
+          "minLength": 1,
+          "maxLength": 50
+        },
+        "workingSpouseSalary": {
+          "$id": "#/properties/economicData/properties/workingSpouseSalary",
+          "type": "string",
+          "title": "The workingSpouseSalary schema",
+          "default": "",
+          "maxLength": 50
+        },
+        "ownedHouse": {
+          "$id": "#/properties/economicData/properties/ownedHouse",
+          "type": "string",
+          "title": "The ownedHouse schema",
+          "default": "",
+          "minLength": 1,
+          "maxLength": 50
+        },
+        "ownedHouseValue": {
+          "$id": "#/properties/economicData/properties/ownedHouseValue",
+          "type": "string",
+          "title": "The ownedHouseValue schema",
+          "default": "",
+          "maxLength": 50
+        },
+        "payRent": {
+          "$id": "#/properties/economicData/properties/payRent",
+          "type": "string",
+          "title": "The payRent schema",
+          "default": "",
+          "minLength": 1,
+          "maxLength": 50
+        },
+        "payRentValue": {
+          "$id": "#/properties/economicData/properties/payRentValue",
+          "type": "string",
+          "title": "The payRentValue schema",
+          "default": "",
+          "maxLength": 50
+        },
+        "ownCar": {
+          "$id": "#/properties/economicData/properties/ownCar",
+          "type": "string",
+          "title": "The ownCar schema",
+          "default": "",
+          "minLength": 1,
+          "maxLength": 50
+        },
+        "ownCarModel": {
+          "$id": "#/properties/economicData/properties/ownCarModel",
+          "type": "string",
+          "title": "The ownCarModel schema",
+          "default": "",
+          "maxLength": 50
+        },
+        "hasDebts": {
+          "$id": "#/properties/economicData/properties/hasDebts",
+          "type": "string",
+          "title": "The hasDebts schema",
+          "default": "",
+          "minLength": 1,
+          "maxLength": 50
+        },
+        "hasDebtsValue": {
+          "$id": "#/properties/economicData/properties/hasDebtsValue",
+          "type": "string",
+          "title": "The hasDebtsValue schema",
+          "default": "",
+          "maxLength": 50
+        },
+        "monthlyExpenses": {
+          "$id": "#/properties/economicData/properties/monthlyExpenses",
+          "type": "string",
+          "title": "The monthlyExpenses schema",
+          "default": "",
+          "minLength": 1,
+          "maxLength": 50
+        },
+        "otherIncomes" : {
+          "type": "array",
+          "default": [],
+          "additionalProperties": true,
+          "items": {
+            "otherIncome": {
+              "type": "object",
+              "default" : {},
+              "required": [
+                "otherIncomeDescription",
+                "otherIncomeValue"
+              ],
+              "properties": {
+                "otherIncomeDescription": {
+                  "$id": "#/properties/economicData/properties/otherIncomeDescription",
+                  "type": "string",
+                  "title": "The otherIncomeDescription schema",
+                  "default": "",
+                  "minLength": 1,
+                  "maxLength": 50
+                },
+                "otherIncomeValue": {
+                  "$id": "#/properties/economicData/properties/otherIncomeValue",
+                  "type": "string",
+                  "title": "The otherIncomeDescription schema",
+                  "default": "",
+                  "minLength": 1,
+                  "maxLength": 50
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
