@@ -6,7 +6,7 @@ $modulosConsultar = array_intersect($modulos, $_SESSION["consultar"]);
 ?>
 
 <!-- Sidebar -->
-<div class="app-sidebar sidebar-shadow">
+<div class="app-sidebar sidebar-shadow" style="overflow-y: scroll;">
     <!-- Logo -->
     <div class="app-header__logo">
         <div class="logo-src"></div>

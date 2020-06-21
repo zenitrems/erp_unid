@@ -93,15 +93,60 @@ if (isset($id_usr)) {
                                                     <?php
                                                     $profiles = $db->select("perfiles", "*");
                                                     $number = 1;
+                                                    // $i = 0;
                                                     foreach ($profiles as $profile) {
                                                     ?>
                                                         <tr>
                                                             <th scope="row"><?php echo $number; ?></th>
                                                             <td><?php echo ucfirst(strtolower($profile["nombre_perfil"])); ?></td>
-                                                            <td><?php echo $profile["consultar"]; ?></td>
-                                                            <td><?php echo $profile["insertar"]; ?></td>
-                                                            <td><?php echo $profile["editar"]; ?></td>
-                                                            <td><?php echo $profile["eliminar"]; ?></td>
+                                                            <td>
+                                                            <?php 
+                                                                    $consultarPerfiles = explode(' ', $profile['consultar']);
+                                                                        foreach($consultarPerfiles as $perfil){
+                                                                            $consultasNomModulo = $db->select('modulos', 'nombre_modulo', ['id_modulo' => $perfil]);
+                                                                            foreach($consultasNomModulo as $nombreMod){
+                                                                                echo $nombreMod;
+                                                                                echo "<br>";
+                                                                            }
+                                                                        }
+                                                            ?>
+                                                            </td>
+                                                            <td>
+                                                            <?php 
+                                                                    $insertarPerfiles = explode(' ', $profile['insertar']);
+                                                                        foreach($insertarPerfiles as $perfil){
+                                                                            $insertarNomModulo = $db->select('modulos', 'nombre_modulo', ['id_modulo' => $perfil]);
+                                                                            foreach($insertarNomModulo as $nombreMod){
+                                                                                echo $nombreMod;
+                                                                                echo "<br>";
+                                                                            }
+                                                                        }
+                                                            ?>
+                                                            </td>
+                                                            <td>
+                                                            <?php 
+                                                                    $editarPerfiles = explode(' ', $profile['editar']);
+                                                                        foreach($editarPerfiles as $perfil){
+                                                                            $editarNomModulo = $db->select('modulos', 'nombre_modulo', ['id_modulo' => $perfil]);
+                                                                            foreach($editarNomModulo as $nombreMod){
+                                                                                echo $nombreMod;
+                                                                                echo "<br>";
+                                                                            }
+                                                                        }
+                                                            ?>
+                                                            </td>
+                                                            <td>
+                                                            <?php 
+                                                                    $deletePerfiles = explode(' ', $profile['eliminar']);
+                                                                        foreach($deletePerfiles as $perfil){
+                                                                            $deleteNomModulo = $db->select('modulos', 'nombre_modulo', ['id_modulo' => $perfil]);
+                                                                            foreach($deleteNomModulo as $nombreMod){
+                                                                                echo $nombreMod;
+                                                                                echo "<br>";
+                                                                            }
+                                                                        }
+                                                            ?>
+                                                            </td>
                                                             <?php
                                                             //Si el id del modulo se encuentra en el array de permisos editar o eliminar muestra el td
                                                             if (in_array($idModuloPerfiles[0], $_SESSION["editar"]) || in_array($idModuloPerfiles[0], $_SESSION["eliminar"])) :
