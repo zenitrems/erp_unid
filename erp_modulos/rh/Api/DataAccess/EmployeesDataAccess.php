@@ -86,9 +86,9 @@ class EmployeesDataAccess
 
             $params = array('position', 'desiredSalary', 'approvedSalary', 'status', 'recruitmentDate', 'recordStatus', 'lastname', 'mothersLastname', 'name', 'birthDate', 'telephone', 'nationality', 'postalCode', 'address', 'suburb', 'birthPlace', 'height', 'weight', 'maritalStatus', 'otherGender', 'gender','livesWith', 'dependOn');
 
-            $insertion = $this->insertion($newArray, $params, 'sp_insert_employee');
+            $response = $this->insertion($newArray, $params, 'sp_insert_employee');
 
-            $newArray['employeeId'] =  $insertion->fetch(PDO::FETCH_OBJ)->id;
+            $newArray['employeeId'] =  $response->fetch(PDO::FETCH_OBJ)->id;
 
             $paramsDoc = array('curp', 'afore', 'rfc', 'nss', 'militarPrimer', 'passport', 'driversLicence', 'driversLicenceNumber', 'foreignDocuments', 'employeeId');
 
@@ -104,7 +104,15 @@ class EmployeesDataAccess
 
             $paramsScholarship = array('employeeId', 'elementarySchoolName', 'elementarySchoolAddress', 'elementarySchoolFrom', 'elementarySchoolTo', 'elementarySchoolDegree', 'juniorHighName', 'juniorHighAddress', 'juniorHighFrom', 'juniorHighTo', 'juniorHighDegree', 'highSchoolName', 'highSchoolAddress', 'highSchoolFrom', 'highSchoolTo', 'highSchoolDegree', 'professionalSchoolName', 'professionalSchoolTo', 'professionalSchoolFrom', 'professionalSchoolAddress', 'professionalSchoolDegree');
 
-            $insertion = $this->insertion($newArray, $paramsScholarship, 'sp_insert_scholarship');
+            $this->insertion($newArray, $paramsScholarship, 'sp_insert_scholarship');
+
+            $paramsGeneral = array('employeeId', 'isBonded', 'isBondedAgency', 'isUnionized', 'isUnionizedUnion', 'startingDate', 'isInsured', 'isInsuredAgency', 'canTravel', 'canTravelReason', 'canMove', 'canMoveReason');
+
+            $this->insertion($newArray, $paramsGeneral, 'sp_insert_general');
+
+            $paramsEconomic = array('employeeId', 'workingSpouse', 'workingSpouseSalary', 'ownedHouse', 'ownedHouseValue', 'payRent', 'payRentValue', 'ownCar', 'ownCarModel', 'hasDebts', 'hasDebtsValue', 'monthlyExpenses');
+
+            $insertion = $this->insertion($newArray, $paramsEconomic, 'sp_insert_economic');
 
             return $insertion->rowCount();
 

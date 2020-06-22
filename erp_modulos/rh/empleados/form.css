@@ -32,6 +32,7 @@ form label {
 
 .form-check-inline {
     margin-right: 0px;
+    display: flex;
 }
 
 .col-4{
@@ -91,4 +92,8 @@ form label {
 
 .form-check label {
     margin-right: 5px;
+}
+
+.text-inline{
+    width: 100%;
 }

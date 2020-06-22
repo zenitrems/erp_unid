@@ -5,6 +5,7 @@ require (__DIR__ . '/../../../vendor/autoload.php');
 use Api\Controllers\DepartmentsController;
 use Api\Controllers\EmployeesController;
 use Api\Controllers\DefinedOptionsController;
+use Api\Controllers\WorkPositionsController;
 
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
@@ -16,6 +17,7 @@ header("Cache-Control: post-check=0, pre-check=0", false);
 header("Pragma: no-cache");
 
 $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+isset($_SERVER['QUERY_STRING']) ? parse_str($_SERVER['QUERY_STRING'], $params) : $params = null;
 $uri = explode('/', $uri);
 $key = array_search('Api', $uri);
 $route = isset($uri[$key + 1]) ? $uri[$key + 1] : null;
@@ -26,6 +28,8 @@ $data = file_get_contents('php://input') ? file_get_contents('php://input') : nu
 $departments = new DepartmentsController();
 $employees = new EmployeesController();
 $definedOptions= new DefinedOptionsController();
+$workPositions = new WorkPositionsController();
+
 
 if ($route) {
 
@@ -41,6 +45,10 @@ if ($route) {
 
         case 'definedOptions':
             $definedOptions->process($requestMethod);
+            break;
+
+        case 'positions':
+            $workPositions->process($requestMethod, $id, $params, $data);
             break;
 
         default:

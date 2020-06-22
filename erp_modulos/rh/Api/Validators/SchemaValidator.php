@@ -22,6 +22,10 @@ class SchemaValidator
             $schema = Schema::fromJsonString(file_get_contents(__DIR__ . '/../Schemas/EmployeesSchema.json'));
         }
 
+        if($schemaName == 'positions'){
+            $schema = Schema::fromJsonString(file_get_contents(__DIR__ . '/../Schemas/WorkingPosition.json'));
+        }
+
         $validator = new Validator();
         $result = $validator->schemaValidation($values, $schema, -1);
 

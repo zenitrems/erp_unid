@@ -22,10 +22,9 @@
 }
 
 .modal {
-    top: 30%;
+    top: 20%;
 }
 
-.body {
-    top: -20px;
-    right: 30px;
+.dropdown-toggle {
+    background-color: white;
 }

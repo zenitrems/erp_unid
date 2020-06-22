@@ -14,19 +14,26 @@
       "title": "The basicData schema",
       "default": {},
       "required": [
+        "department",
         "position",
         "desiredSalary",
         "status"
       ],
       "additionalProperties": true,
       "properties": {
+        "department": {
+          "$id": "/properties/basicData/properties/department",
+          "type": "string",
+          "title": "The department schema",
+          "default": "",
+          "minLength": 1
+        },
         "position": {
           "$id": "/properties/basicData/properties/position",
           "type": "string",
           "title": "The position schema",
           "default": "",
-          "minLength": 1,
-          "maxLength": 50
+          "minLength": 1
         },
         "desiredSalary": {
           "$id": "/properties/basicData/properties/desiredSalary",

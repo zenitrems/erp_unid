@@ -166,7 +166,7 @@ const itemsFactory = (number, type, $data) => {
                                 <input type="text" class="form-control" id="languageName${number}" name="languageName">
                             </div>
                         </div>
-                        <div class="form-group col-4">
+                        <div class="form-group col">
                             <div class="input-group input-group-sm mb-3">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text">%</span>
@@ -404,6 +404,33 @@ const itemsFactory = (number, type, $data) => {
             </li>`
             )
         break;
+
+        case (type === 'supervisePosition'):
+            return(
+                `<li class="list-group-item" id="otherIncome${number}">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="removeElement(event)">
+                    &times;
+                </button>
+                <form class="otherIncomes" id="otherIncome${number}">
+                     <div class="form-row">
+                        <div class="form-group col-9">
+                            <label for="otherIncomeDescription${number}">Descripción:</label>
+                            <div class="input-group input-group-sm mb-">
+                                <input type="text" class="form-control" id="otherIncomeDescription${number}" name="otherIncomeDescription">
+                            </div>
+                        </div>
+                        <div class="form-group col-3">
+                            <label for="otherIncomeValue${number}">Importe mensual:</label>
+                            <div class="input-group input-group-sm mb-3">
+                                <input type="number" class="form-control" id="otherIncomeValue${number}" name="otherIncomeValue" value="0.0">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </li>`
+            )
+            break;
+
 
         default:
             return('')

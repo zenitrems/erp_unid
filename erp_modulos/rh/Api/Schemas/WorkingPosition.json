@@ -1,0 +1,36 @@
+{
+  "$id": "http://example.com/example.json",
+  "type": "object",
+  "title": "The root schema",
+  "default": {},
+  "required": [
+    "positionName",
+    "positionDepartment",
+    "positionIsSupervisor"
+  ],
+  "additionalProperties": true,
+  "properties": {
+    "positionName": {
+      "$id": "#/properties/positionName",
+      "type": "string",
+      "title": "The positionName schema",
+      "pattern": "^[A-Za-z\\s]*$",
+      "default": "",
+      "minLength": 1,
+      "maxLength": 50
+    },
+    "positionDepartment": {
+      "$id": "#/properties/positionDepartment",
+      "type": ["number", "string"],
+      "title": "The positionDepartment schema",
+      "default": "",
+      "minLength": 1
+    },
+    "positionIsSupervisor": {
+      "$id": "#/properties/positionIsSupervisor",
+      "type": ["number", "string"],
+      "title": "The positionIsSupervisor schema",
+      "default": ""
+    }
+  }
+}

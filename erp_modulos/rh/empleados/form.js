@@ -20,6 +20,58 @@ document.addEventListener('DOMContentLoaded', async () => {
             console.log(e)
         })
 
+    const department = document.querySelector('#department')
+
+    department.addEventListener('change', event => {
+        const id = department.value
+        axios.get(`http://${window.location.hostname}/erp_modulos/rh/Api/positions?department=${id}`)
+            .then(response => {
+                const data = response.data
+                const rows = data.map(option => (`<option value="${option.id}">${option.positionName}</option>`))
+                const element = document.querySelector(`#position`)
+                element.innerHTML = rows.join('')
+                $('#position').selectpicker('refresh')
+                $('#position').selectpicker({
+                    liveSearch: true,
+                    liveSearchNormalize: true
+                });
+            })
+            .catch(e => {
+                console.log(e)
+            })
+    })
+
+    await axios.get(`http://${window.location.hostname}/erp_modulos/rh/Api/departments`)
+        .then(response => {
+            const data = response.data
+            const rows = data.map(option => (`<option value="${option.id}">${option.name}</option>`))
+            department.innerHTML = rows.join('')
+            $('#department').selectpicker('refresh')
+            $('#department').selectpicker({
+                liveSearch: true,
+                liveSearchNormalize: true
+            });
+            const id = department.value
+            axios.get(`http://${window.location.hostname}/erp_modulos/rh/Api/positions?department=${id}`)
+                .then(response => {
+                    const data = response.data
+                    const rows = data.map(option => (`<option value="${option.id}">${option.positionName}</option>`))
+                    const element = document.querySelector(`#position`)
+                    element.innerHTML = rows.join('')
+                    $('#position').selectpicker('refresh')
+                    $('#position').selectpicker({
+                        liveSearch: true,
+                        liveSearchNormalize: true
+                    });
+                })
+                .catch(e => {
+                    console.log(e)
+                })
+        })
+        .catch(e => {
+            console.log(e)
+        })
+
     const postal_code = document.querySelector('#postalCode')
 
     postal_code.addEventListener('change', event => {
@@ -166,7 +218,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             forms.forEach(form => {
                 const id = form.getAttribute('id')
                 const form_data = new FormData(form)
-                const data = Object.fromEntries(form_data)
+                const data = JSON.stringify(Object.fromEntries(form_data))
                 obj[id] = data
             })
 
@@ -182,6 +234,8 @@ document.addEventListener('DOMContentLoaded', async () => {
                     children: data
                 }
             }
+
+            console.log(obj)
 
             const schools = document.querySelectorAll('.schools')
 
