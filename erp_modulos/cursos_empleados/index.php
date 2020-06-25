@@ -77,6 +77,7 @@ if (isset($id_usr)) {
                                                         <th>#</th>
                                                         <th>Empleado</th>
                                                         <th>Curso</th>
+                                                        <th>Estatus</th>
                                                         <?php
                                                         //Si el id del modulo se encuentra en el array de permisos editar o eliminar muestra el th
                                                         if (in_array($idModuloCursosEmpleados[0], $_SESSION["editar"]) || in_array($idModuloCursosEmpleados[0], $_SESSION["eliminar"])) :
@@ -113,6 +114,9 @@ if (isset($id_usr)) {
                                                             if (in_array($idModuloCursosEmpleados[0], $_SESSION["editar"]) || in_array($idModuloCursosEmpleados[0], $_SESSION["eliminar"])) :
                                                             ?>
                                                                 <td>
+                                                                    <h7>Activo</h7>
+                                                                </td>
+                                                                <td>
                                                                     <?php
                                                                     //Si el id del modulo está en el array de permisos editar muestra el boton
                                                                     if (in_array($idModuloCursosEmpleados[0], $_SESSION["editar"])) :
@@ -131,6 +135,15 @@ if (isset($id_usr)) {
                                                                         </button>
                                                                     <?php
                                                                     endif;
+
+                                                                    //Si el id del modulo está en el array de permisos eliminar muestra el boton
+                                                                    if (in_array($idModuloCursosEmpleados[0], $_SESSION["eliminar"])) :
+                                                                        ?>
+                                                                            <button class="btnDelete mr-2 btn btn-outline-secondary" data="<?php echo $courseEmployee['id'] ?>">
+                                                                                Obtener Diploma
+                                                                            </button>
+                                                                        <?php
+                                                                        endif;
                                                                     ?>
                                                                 </td>
                                                             <?php

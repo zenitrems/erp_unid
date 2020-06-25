@@ -75,6 +75,11 @@ if (isset($id_usr)) {
                                                     <tr>
                                                         <th>#</th>
                                                         <th>Nombre</th>
+                                                        <th>Fecha Inicio</th>
+                                                        <th>Fecha Fin</th>
+                                                        <th>Duracion</th>
+                                                        <th>Dias</th>
+                                                        <th>Horario</th>
                                                         <?php
                                                         //Si el id del modulo se encuentra en el array de permisos editar o eliminar muestra el th
                                                         if (in_array($idModuloCursos[0], $_SESSION["editar"]) || in_array($idModuloCursos[0], $_SESSION["eliminar"])) :
@@ -98,6 +103,21 @@ if (isset($id_usr)) {
                                                             //Si el id del modulo está en el array de permisos editar y eliminar muestra el td
                                                             if (in_array($idModuloCursos[0], $_SESSION["editar"]) || in_array($idModuloCursos[0], $_SESSION["eliminar"])) :
                                                             ?>
+                                                                <td>
+                                                                    <h7>13/07/2020</h7>
+                                                                </td>
+                                                                <td>
+                                                                    <h7>20/07/2020</h7>
+                                                                </td>
+                                                                <td>
+                                                                    <h7>16 Horas</h7>
+                                                                </td>
+                                                                <td>
+                                                                    <h7>8 Dias</h7>
+                                                                </td>
+                                                                <td>
+                                                                    <h7>10:00 - 12:00</h7>
+                                                                </td>
                                                                 <td>
                                                                     <?php
                                                                     //Si el id del modulo está en el array de permisos editar muestra el boton
