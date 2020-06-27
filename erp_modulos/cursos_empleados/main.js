@@ -6,12 +6,39 @@ $(document).ready(function () {
         width: "100%",
     });
 
+    $(".btnDiploma").click(function () {
+        let empleado = $(this).attr("data");
+        let curso = $(this).attr("name");
+        obj = {
+            action: "createCertificate",
+            empleado: empleado,
+            curso: curso
+        };
+        $.post(
+            "functions.php",
+            obj,
+            function (res) {
+                if(res.status == 1){
+                    console.log('hola');
+                    console.log(res.empleado);
+                    console.log(res.curso);
+                }else{
+                    console.log('adios');
+                }
+            },
+            "JSON"
+        );
+    });
+
+
     $("#newCourseEmployee").click(function () {
         obj = {
             action: "insertCourseEmployee",
         };
         $(".modal-title").text("Añadir nuevo curso a empleado");
         $("#btnInsertCourseEmployee").text("Añadir");
+        $("#status_curso").css('display','none');
+        $("#label_status").css('display','none');
         $("#formCoursesEmployee")[0].reset();
     });
 
@@ -25,6 +52,7 @@ $(document).ready(function () {
             "functions.php",
             obj,
             function (res) {
+                $(".status_curso").val(res.status_curso);
                 $("#id_empleado").val(res.id_empleado);
                 $("#id_curso").val(res.id_curso);
                 $("#id_empleado").trigger("chosen:updated");
@@ -38,6 +66,9 @@ $(document).ready(function () {
         );
         $(".modal-title").text("Editar");
         $("#btnInsertCourseEmployee").text("Editar");
+        $("#status_curso").css('display','block');
+        $("#label_status").css('display','block');
+        $("#formCoursesEmployee")[0].reset();
     });
 
     $(".btnDelete").click(function () {
