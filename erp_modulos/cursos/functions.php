@@ -31,13 +31,27 @@ function insertCourse()
     global $db;
     $duplicateCourse = false;
     $nombre_curso = strtolower($_POST["nombre_curso"]);
-    if (empty(trim($nombre_curso))) {
+    $fecha_inicio =  $_POST["fecha_inicio"];
+    $fecha_final = $_POST["fecha_final"];
+    $duracion_curso = $_POST["duracion_curso"];
+    $horario_curso = $_POST["horario_curso"];
+    if ($_POST["dias_curso"] == 0) {
+        $dias_curso = "";
+    } else {
+        $dias_curso = implode(", ", $_POST["dias_curso"]);
+    }
+    if (empty(trim($nombre_curso)) || empty(trim($fecha_inicio)) || empty(trim($fecha_final)) || empty(trim($duracion_curso)) || empty(trim($dias_curso))) {
         $res["status"] = 0;
     } else {
         $duplicateCourse = validateCourse("cursos", "nombre_curso", $nombre_curso);
         if (!$duplicateCourse) {
             $db->insert("cursos", [
-                "nombre_curso" => $nombre_curso
+                "nombre_curso" => $nombre_curso,
+                "fecha_inicio" => $fecha_inicio,
+                "fecha_final" => $fecha_final,
+                "duracion_curso" => $duracion_curso,
+                "dias_curso" => $dias_curso,
+                "horario_curso" => $horario_curso
             ]);
             $res["status"] = 1;
         } else {
@@ -69,13 +83,27 @@ function updateCourse($id_curso)
 {
     global $db;
     $nombre_curso = strtolower($_POST["nombre_curso"]);
-    if (empty(trim($nombre_curso))) {
+    $fecha_inicio =  $_POST["fecha_inicio"];
+    $fecha_final = $_POST["fecha_final"];
+    $duracion_curso = $_POST["duracion_curso"];
+    $horario_curso = $_POST["horario_curso"];
+    if ($_POST["dias_curso"] == 0) {
+        $dias_curso = "";
+    } else {
+        $dias_curso = implode(", ", $_POST["dias_curso"]);
+    }
+    if (empty(trim($nombre_curso)) || empty(trim($fecha_inicio)) || empty(trim($fecha_final)) || empty(trim($duracion_curso)) || empty(trim($dias_curso))) {
         $res["status"] = 0;
     } else {
         $db->update(
             "cursos",
             [
-                "nombre_curso" => $nombre_curso
+                "nombre_curso" => $nombre_curso,
+                "fecha_inicio" => $fecha_inicio,
+                "fecha_final" => $fecha_final,
+                "duracion_curso" => $duracion_curso,
+                "dias_curso" => $dias_curso,
+                "horario_curso" => $horario_curso
             ],
             ["id_curso" => $id_curso]
         );

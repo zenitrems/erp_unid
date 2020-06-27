@@ -18,7 +18,10 @@ if (isset($id_usr)) {
         <head>
             <meta charset="UTF-8" />
             <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no" />
-            <link rel="stylesheet" href="<?php echo constant("URL") ?>/main.css" />
+            <link rel="stylesheet" href="<?php echo constant("URL") ?>/vendor/components/chosen/chosen.css">
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/timepicker@1.13.10/jquery.timepicker.css">
+            <link rel=" stylesheet" href="<?php echo constant("URL") ?>/main.css" />
             <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
             <title>Cursos</title>
         </head>
@@ -99,25 +102,15 @@ if (isset($id_usr)) {
                                                         <tr>
                                                             <th scope="row"><?php echo $number; ?></th>
                                                             <td><?php echo utf8_encode(ucfirst($course['nombre_curso'])) ?></td>
+                                                            <td><?php echo utf8_encode(ucfirst($course['fecha_inicio'])) ?></td>
+                                                            <td><?php echo utf8_encode(ucfirst($course['fecha_final'])) ?></td>
+                                                            <td><?php echo utf8_encode(ucfirst($course['duracion_curso'])) ?></td>
+                                                            <td><?php echo utf8_encode(ucfirst($course['dias_curso'])) ?></td>
+                                                            <td><?php echo utf8_encode(ucfirst($course['horario_curso'])) ?></td>
                                                             <?php
                                                             //Si el id del modulo está en el array de permisos editar y eliminar muestra el td
                                                             if (in_array($idModuloCursos[0], $_SESSION["editar"]) || in_array($idModuloCursos[0], $_SESSION["eliminar"])) :
                                                             ?>
-                                                                <td>
-                                                                    <h7>13/07/2020</h7>
-                                                                </td>
-                                                                <td>
-                                                                    <h7>20/07/2020</h7>
-                                                                </td>
-                                                                <td>
-                                                                    <h7>16 Horas</h7>
-                                                                </td>
-                                                                <td>
-                                                                    <h7>8 Dias</h7>
-                                                                </td>
-                                                                <td>
-                                                                    <h7>10:00 - 12:00</h7>
-                                                                </td>
                                                                 <td>
                                                                     <?php
                                                                     //Si el id del modulo está en el array de permisos editar muestra el boton
@@ -164,6 +157,10 @@ if (isset($id_usr)) {
             <!-- /Full Container -->
             <script src="<?php echo constant("URL") ?>/assets/scripts/main.js"></script>
             <script src="<?php echo constant("URL") ?>/vendor/components/jquery/jquery.min.js"></script>
+            <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+            <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/timepicker@1.13.10/jquery.timepicker.min.js"></script>
+            <script src="<?php echo constant("URL") ?>/vendor/components/chosen/chosen.jquery.min.js"></script>
             <script src="<?php echo constant("URL") ?>/erp_modulos/cursos/main.js"></script>
         </body>
 
@@ -184,7 +181,53 @@ if (isset($id_usr)) {
                             <div class="form-row">
                                 <div class="col-md-12 mb-3">
                                     <label for="nombre_curso">Nombre</label>
-                                    <input type="text" class="form-control" id="nombre_curso" name="nombre_curso" placeholder="ej. Inducción" required>
+                                    <input type="text" class="form-control" id="nombre_curso" name="nombre_curso" placeholder="ej. Inducción">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="fecha_inicio">Fecha de inicio</label>
+                                    <input type="text" placeholder="aaaa/mm/dd" class="form-control" id="fecha_inicio" name="fecha_inicio">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="fecha_final">Fecha final</label>
+                                    <input type="text" placeholder="aaaa/mm/dd" class="form-control" id="fecha_final" name="fecha_final">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="dias_curso">Duracion del curso en horas</label>
+                                    <select class="form-control" name="duracion_curso" id="duracion_curso">
+                                        <option value="0">Seleccionar</option>
+                                        <option value="1 hr">1 hrs</option>
+                                        <option value="2 hrs">2 hrs</option>
+                                        <option value="3 hrs">3 hrs</option>
+                                        <option value="4 hrs">4 hrs</option>
+                                        <option value="5 hrs">5 hrs</option>
+                                        <option value="6 hrs">6 hrs</option>
+                                        <option value="7 hrs">7 hrs</option>
+                                        <option value="8 hrs">8 hrs</option>
+                                        <option value="9 hrs">9 hrs</option>
+                                        <option value="10 hrs">10 hrs</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="horario_curso">Horario del curso</label>
+                                    <input type="text" class="form-control" id="horario_curso" name="horario_curso">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col-md-12 mb-3">
+                                    <label for="dias_curso">Seleccione los días en que el curso estará disponible</label>
+                                    <select class="form-control" name="dias_curso[]" id="dias_curso" data-placeholder="Seleccionar" multiple>
+                                        <option value="Lun">Lun</option>
+                                        <option value="Mar">Mar</option>
+                                        <option value="Mie">Mie</option>
+                                        <option value="Jue">Jue</option>
+                                        <option value="Vie">Vie</option>
+                                        <option value="Sab">Sab</option>
+                                        <option value="Dom">Dom</option>
+                                    </select>
                                 </div>
                             </div>
                             <button class="btn btn-outline-success" id="btnInsertCourse" type="button">Insertar</button>
