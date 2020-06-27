@@ -1,6 +1,7 @@
 <?php
     $empleado = $_POST['empleado'];
-    $curso = $_POST['curso'];
+    $curso = strtoupper($_POST['curso']);
+
 
     require "../../config/config.php";
     require_once ROOT_PATH . "/vendor/fpdf/fpdf/original/fpdf.php";

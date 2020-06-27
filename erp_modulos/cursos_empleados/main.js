@@ -4,32 +4,12 @@ $(document).ready(function () {
     $(".chosen-select").chosen({
         no_results_text: "Oops, no se encontraron resultados para: ",
         width: "100%",
+        max_selected_options: 7
     });
 
-    $(".btnDiploma").click(function () {
-        let empleado = $(this).attr("data");
-        let curso = $(this).attr("name");
-        obj = {
-            action: "createCertificate",
-            empleado: empleado,
-            curso: curso
-        };
-        $.post(
-            "functions.php",
-            obj,
-            function (res) {
-                if(res.status == 1){
-                    console.log('hola');
-                    console.log(res.empleado);
-                    console.log(res.curso);
-                }else{
-                    console.log('adios');
-                }
-            },
-            "JSON"
-        );
-    });
-
+    $(".chosen-select").bind("chosen:maxselected", function () { 
+        alert('Máximo 7 empleados por inserción, en honor al comandante');
+     }); 
 
     $("#newCourseEmployee").click(function () {
         obj = {
@@ -39,7 +19,11 @@ $(document).ready(function () {
         $("#btnInsertCourseEmployee").text("Añadir");
         $("#status_curso").css('display','none');
         $("#label_status").css('display','none');
-        $("#formCoursesEmployee")[0].reset();
+        $("#id_empleado22").css('display','none');
+        $("#id_empleadoo").css('display','block');
+        // $("#formCoursesEmployee").reset();
+        $("#id_curso").val("0").trigger("chosen:updated")
+        $("#id_empleado").val("").trigger("chosen:updated")
     });
 
     $(".btnEdit").click(function () {
@@ -53,9 +37,9 @@ $(document).ready(function () {
             obj,
             function (res) {
                 $(".status_curso").val(res.status_curso);
-                $("#id_empleado").val(res.id_empleado);
+                $("#id_empleado2").val(res.id_empleado);
                 $("#id_curso").val(res.id_curso);
-                $("#id_empleado").trigger("chosen:updated");
+                $("#id_empleado2").trigger("chosen:updated");
                 $("#id_curso").trigger("chosen:updated");
                 obj = {
                     action: "updateCourseEmployee",
@@ -68,6 +52,8 @@ $(document).ready(function () {
         $("#btnInsertCourseEmployee").text("Editar");
         $("#status_curso").css('display','block');
         $("#label_status").css('display','block');
+        $("#id_empleadoo").css('display','none');
+        $("#id_empleado22").css('display','block');
         $("#formCoursesEmployee")[0].reset();
     });
 
@@ -132,7 +118,7 @@ $(document).ready(function () {
                                 icon: "error",
                                 title: "Error...",
                                 text:
-                                    "El curso que estas tratando de añadir ya ah sido asignado al empleado",
+                                    "El curso que estas tratando de añadir ya ha sido asignado al empleado",
                             });
                         } else if (res.status == 1) {
                             Swal.fire({
