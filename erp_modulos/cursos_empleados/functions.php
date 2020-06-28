@@ -31,7 +31,7 @@ function insertCourseEmployee()
     $duplicate = false;
     // print_r($_POST);
     //Si no existe empleado o curso == 0 regresar status 0
-    if (!isset($_POST["id_empleado"]) || $_POST["id_curso"] == "0") {
+    if (!isset($_POST['id_empleado']) || $_POST["id_curso"] == "0") {
         $res["status"] = 0;
     } else {
         //Sacar tamaño de array empleados
@@ -41,7 +41,7 @@ function insertCourseEmployee()
             $duplicate = validateCourseEmployee($_POST["id_empleado"], $_POST["id_curso"]);
             if (!$duplicate) {
                 $db->insert("cursos_empleados", [
-                    "id_empleado" => $_POST["id_empleado"],
+                    "id_empleado" => $_POST["id_empleado"][0],
                     "id_curso" => $_POST["id_curso"],
                     "status_curso" => "Nuevo"
                 ]);
@@ -49,9 +49,9 @@ function insertCourseEmployee()
             } else {
                 $res["status"] = 2;
             }
-        } 
+        } else{
         //Si hay mas de un empleado en el array insertar demas empleados y no mostrar msj de repetido en los repetidos
-        else{
+
             //Recorrer empleados individualmente
             for ($i = 0; $i < $tamanoEmpleados; $i++) {
                 // var_dump($_POST['id_empleado'][$i]);
