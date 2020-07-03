@@ -48,6 +48,17 @@ class WorkPositionDataAccess
         }
     }
 
+    public function selectSupervisorsByDepartment($department)
+    {
+        $stmt = $this->dbConnection->prepare('SELECT pus.id AS id, positionName, positionDepartment, dep.name AS departmentName, positionIsSupervisor FROM puestos_empleados_rh pus JOIN departamentos_rh dep ON pus.positionDepartment = dep.id WHERE dep.id = ? AND positionIsSupervisor = 1');
+        try {
+            $stmt->execute(array($department));
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            exit($e->getMessage());
+        }
+    }
+
     public function insert($data)
     {
         $values = json_decode($data, true);

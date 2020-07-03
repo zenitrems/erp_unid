@@ -13,7 +13,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Api\\": "erp_modulos/rh/api"
+            "Api\\": "erp_modulos/rh/Api"
         }
     }
 }

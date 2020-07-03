@@ -8,7 +8,7 @@
     user-scalable=no, shrink-to-fit=no"/>
 
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css"/>
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"/>
     <link rel="stylesheet" href="/main.css" />
     <link rel="stylesheet" href="form.css" />
@@ -62,7 +62,7 @@
                                         <form id="basicData">
                                             <div class="form-row">
                                                 <div class="form-group col-6">
-                                                    <label for="position">Departamento:</label>
+                                                    <label for="department">Departamento:</label>
                                                     <div class="input-group input-group-sm mb-3">
                                                         <select class="form-control" data-live-search="true" id="department" name="department">
                                                             <option>Selecionar</option>

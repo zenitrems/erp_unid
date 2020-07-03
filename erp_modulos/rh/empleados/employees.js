@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 `<tr style="text-align: justify">
                  <th scope="row" style="text-align: center" id=${id}>${id + 1}</th>
                  <td data=${data.id}>${data.STATUS}</td>
-                 <td data=${data.id}>${data.position}</td>
+                 <td data=${data.id}>${data.positionName}</td>
                  <td data=${data.id}>${data.lastname}</td>
                  <td data=${data.id}>${data.mothersLastname}</td>
                  <td data=${data.id}>${data.name}</td>

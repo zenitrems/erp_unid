@@ -2,33 +2,35 @@
 
 namespace Api\Controllers;
 
-use Api\Services\WorkPositionsService;
+use Api\Services\VacationsService;
 
-class WorkPositionsController
+class VacationsController
 {
 
     public function process($requestMethod, $id, $params, $data)
     {
-        $services = new WorkPositionsService();
+        $services = new VacationsService();
 
         switch ($requestMethod) {
 
             case 'GET':
                 if ($id) {
-                    $response = $services->getPosition($id);
-                } elseif ($params && isset($params['supervisors']) && isset($params['department'])) {
-                    $response = $services->getPositionSupervisorsByDepartment($params['supervisors'], $params['department']);
-                } elseif ($params && isset($params['department'])) {
-                    $response = $services->getPositionByDepartment($params['department']);
-                } else{
-                    $response = $services->getAllPositions();
+                    $response = $services->getVacation($id);
+                }elseif ($params && isset($params['user'])){
+                    $response = $services->getVacationByUser($params['user']);
+                }elseif ($params && isset($params['supervisor'])){
+                    $response = $services->getVacationBySupervisor($params['supervisor']);
+                }elseif ($params && isset($params['employee'])){
+                    $response = $services->getVacationByEmployee($params['employee']);
+                }else{
+                    $response = $services->getAllVacations();
 
                 }
                 break;
 
             case 'POST':
                 if ($data) {
-                    $response = $services->createPosition($data);
+                    $response = $services->createVacation($data);
                 } else {
                     $response['status_code_header'] = 'HTTP/1.1 400 Bad Request';
                     exit();
@@ -37,7 +39,7 @@ class WorkPositionsController
 
             case 'PUT':
                 if ($data) {
-                    $response = $services->updatePosition($id, $data);
+                    $response = $services->updateVacation($id, $data);
                 } else {
                     $response['status_code_header'] = 'HTTP/1.1 400 Bad Request';
                     exit();
@@ -46,7 +48,7 @@ class WorkPositionsController
 
             case 'DELETE':
                 if ($id) {
-                    $response = $services->deletePosition($id);
+                    $response = $services->deleteVacation($id);
                 } else {
                     $response['status_code_header'] = 'HTTP/1.1 400 Bad Request';
                     exit();

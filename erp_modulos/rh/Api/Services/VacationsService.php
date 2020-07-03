@@ -3,58 +3,64 @@
 namespace Api\Services;
 
 use Api\Validators\SchemaValidator;
-use Api\DataAccess\WorkPositionDataAccess;
+use Api\DataAccess\VacationsDataAccess;
 
-class WorkPositionsService
+class VacationsService
 {
 
-    public function getPosition($id)
+    public function getVacation($id)
     {
-        $dataAccess = new WorkPositionDataAccess();
+        $dataAccess = new VacationsDataAccess();
         $result = $dataAccess->select($id);
         $response['status_code_header'] = 'HTTP/1.1 200 OK';
         $response['body'] = json_encode($result);
         return $response;
     }
 
-    public function getPositionByDepartment($department)
+    public function getVacationByUser($user)
     {
-        $dataAccess = new WorkPositionDataAccess();
-        $result = $dataAccess->selectByDepartment($department);
+        $dataAccess = new VacationsDataAccess();
+        $result = $dataAccess->selectByUser($user);
         $response['status_code_header'] = 'HTTP/1.1 200 OK';
         $response['body'] = json_encode($result);
         return $response;
     }
 
-    public function getPositionSupervisorsByDepartment($supervisors, $department)
+    public function getVacationByEmployee($employee)
     {
-        if($supervisors){
-            $dataAccess = new WorkPositionDataAccess();
-            $result = $dataAccess->selectSupervisorsByDepartment($department);
-            $response['status_code_header'] = 'HTTP/1.1 200 OK';
-            $response['body'] = json_encode($result);
-        } else {
-            $response['status_code_header'] = 'HTTP/1.1 422 Unprocessable Entity';
-        }
+        $dataAccess = new VacationsDataAccess();
+        $result = $dataAccess->selectByEmployee($employee);
+        $response['status_code_header'] = 'HTTP/1.1 200 OK';
+        $response['body'] = json_encode($result);
         return $response;
     }
 
-    public function getAllPositions()
+
+    public function getVacationBySupervisor($supervisor)
     {
-        $dataAccess = new WorkPositionDataAccess();
+        $dataAccess = new VacationsDataAccess();
+        $result = $dataAccess->selectBySupervisor($supervisor);
+        $response['status_code_header'] = 'HTTP/1.1 200 OK';
+        $response['body'] = json_encode($result);
+        return $response;
+    }
+
+    public function getAllVacations()
+    {
+        $dataAccess = new VacationsDataAccess();
         $result = $dataAccess->selectAll();
         $response['status_code_header'] = 'HTTP/1.1 200 OK';
         $response['body'] = json_encode($result);
         return $response;
     }
 
-    public function createPosition($data)
+    public function createVacation($data)
     {
         $validation = new SchemaValidator();
-        $validationResult = $validation->validateSchema($data, 'positions');
+        $validationResult = $validation->validateSchema($data, 'vacations');
 
         if ($validationResult === true) {
-            $dataAccess = new WorkPositionDataAccess();
+            $dataAccess = new VacationsDataAccess();
             $result = $dataAccess->insert($data);
             $response['status_code_header'] = 'HTTP/1.1 201 Created';
             $response['body'] = json_encode($result);
@@ -67,13 +73,13 @@ class WorkPositionsService
         }
     }
 
-    public function updatePosition($id, $data)
+    public function updateVacation($id, $data)
     {
         $validation = new SchemaValidator();
-        $validationResult = $validation->validateSchema($data, 'positions');
+        $validationResult = $validation->validateSchema($data, 'vacations');
 
         if ($validationResult === true) {
-            $dataAccess = new WorkPositionDataAccess();
+            $dataAccess = new VacationsDataAccess();
             $result = $dataAccess->update($id, $data);
             $response['status_code_header'] = 'HTTP/1.1 201 Created';
             $response['body'] = json_encode($result);
@@ -86,9 +92,9 @@ class WorkPositionsService
         }
     }
 
-    public function deletePosition($id)
+    public function deleteVacation($id)
     {
-        $dataAccess = new WorkPositionDataAccess();
+        $dataAccess = new VacationsDataAccess();
         $result = $dataAccess->delete($id);
         if($result === 0) {
             $response['status_code_header'] = 'HTTP/1.1 422 Unprocessable Entity';

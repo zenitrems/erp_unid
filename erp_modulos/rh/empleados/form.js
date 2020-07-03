@@ -13,7 +13,8 @@ document.addEventListener('DOMContentLoaded', async () => {
             $('#nationality').selectpicker('refresh')
             $('#nationality').selectpicker({
                 liveSearch: true,
-                liveSearchNormalize: true
+                liveSearchNormalize: true,
+                size: 5
             });
         })
         .catch(e => {
@@ -33,7 +34,8 @@ document.addEventListener('DOMContentLoaded', async () => {
                 $('#position').selectpicker('refresh')
                 $('#position').selectpicker({
                     liveSearch: true,
-                    liveSearchNormalize: true
+                    liveSearchNormalize: true,
+                    size: 5
                 });
             })
             .catch(e => {
@@ -49,7 +51,8 @@ document.addEventListener('DOMContentLoaded', async () => {
             $('#department').selectpicker('refresh')
             $('#department').selectpicker({
                 liveSearch: true,
-                liveSearchNormalize: true
+                liveSearchNormalize: true,
+                size: 5
             });
             const id = department.value
             axios.get(`http://${window.location.hostname}/erp_modulos/rh/Api/positions?department=${id}`)
@@ -61,7 +64,8 @@ document.addEventListener('DOMContentLoaded', async () => {
                     $('#position').selectpicker('refresh')
                     $('#position').selectpicker({
                         liveSearch: true,
-                        liveSearchNormalize: true
+                        liveSearchNormalize: true,
+                        size: 5
                     });
                 })
                 .catch(e => {
@@ -92,7 +96,8 @@ document.addEventListener('DOMContentLoaded', async () => {
                     $('#suburb').selectpicker('refresh')
                     $('#suburb').selectpicker({
                         liveSearch: true,
-                        liveSearchNormalize: true
+                        liveSearchNormalize: true,
+                        size: 5
                     });
                 })
                 .catch(e => {
@@ -218,7 +223,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             forms.forEach(form => {
                 const id = form.getAttribute('id')
                 const form_data = new FormData(form)
-                const data = JSON.stringify(Object.fromEntries(form_data))
+                const data = Object.fromEntries(form_data)
                 obj[id] = data
             })
 

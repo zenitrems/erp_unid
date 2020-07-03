@@ -3,10 +3,11 @@
 require_once __DIR__ . '/../../../config/config.php';
 require_once __DIR__ . '/../../../libs/database.php';
 
-session_cache_limiter('private');
-session_cache_expire(0);
-session_start();
+//session_cache_limiter('private');
+//session_cache_expire(0);
+session_start(['read_and_close' => true]);
 error_reporting(0);
+
 $id_usr = $_SESSION['id'];
 
 if (!isset($id_usr)) {
@@ -17,6 +18,8 @@ $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 $uri = explode('/', $uri);
 $key = array_search('rh', $uri);
 $route = isset($uri[$key + 1]) ? $uri[$key + 1] : null;
+
+$_SESSION['id_empleado'] = $db->get('usuarios', 'id_empleado', ['id_usr' => $id_usr]);
 
 if ($route) {
 

@@ -37,11 +37,13 @@ document.addEventListener('DOMContentLoaded', async () => {
             edit_element.innerHTML = rows.join('')
             $('#positionDepartment').selectpicker({
                 liveSearch: true,
-                liveSearchNormalize: true
+                liveSearchNormalize: true,
+                size: 5
             });
             $('#edit-positionDepartment').selectpicker({
                 liveSearch: true,
-                liveSearchNormalize: true
+                liveSearchNormalize: true,
+                size: 5
             });
         })
         .catch(e => {

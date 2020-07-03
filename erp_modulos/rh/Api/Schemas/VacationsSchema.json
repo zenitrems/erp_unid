@@ -1,0 +1,60 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "$id": "http://example.com/example.json",
+  "type": "object",
+  "title": "The root schema",
+  "default": {},
+  "required": [
+    "vacationSupervisor",
+    "employeeId",
+    "vacationRequested",
+    "vacationFrom",
+    "vacationTo",
+    "vacationUser"
+  ],
+  "additionalProperties": true,
+  "properties": {
+    "vacationSupervisor": {
+      "$id": "#/properties/vacationSupervisor",
+      "type": "string",
+      "title": "The vacationSupervisor schema",
+      "default": "",
+      "minLength": 1
+    },
+    "employeeId": {
+      "$id": "#/properties/employeeId",
+      "type": "string",
+      "title": "The employeeId schema",
+      "default": "",
+      "minLength": 1
+    },
+    "vacationRequested": {
+      "$id": "#/properties/vacationRequested",
+      "type": "string",
+      "title": "The vacationRequested schema",
+      "default": "",
+      "minLength": 1
+    },
+    "vacationFrom": {
+      "$id": "#/properties/vacationFrom",
+      "type": "string",
+      "title": "The vacationFrom schema",
+      "default": "",
+      "minLength": 1
+    },
+    "vacationTo": {
+      "$id": "#/properties/vacationTo",
+      "type": "string",
+      "title": "The vacationTo schema",
+      "default": "",
+      "minLength": 1
+    },
+    "vacationUser": {
+      "$id": "#/properties/vacationUser",
+      "type": "string",
+      "title": "The vacationUser schema",
+      "default": "",
+      "minLength": 1
+    }
+  }
+}

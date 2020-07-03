@@ -7,7 +7,7 @@ use Api\Services\EmployeesService;
 class EmployeesController
 {
 
-    public function process($requestMethod, $id, $data)
+    public function process($requestMethod, $id, $params, $data)
     {
         $services = new EmployeesService();
 
@@ -15,9 +15,12 @@ class EmployeesController
 
             case 'GET':
                 if($id){
-
+                    $response = $services->getEmployee($id);
+                } elseif ($params && isset($params['supervisors']) && isset($params['department'])) {
+                    $response = $services->getAllEmployeesSupervisorsByDepartment($params['supervisors'], $params['department']);
+                } else {
+                    $response = $services->getAllEmployees();
                 }
-                $response = $services->getAllEmployees();
                 break;
 
             case 'POST':

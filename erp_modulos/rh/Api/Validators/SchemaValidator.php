@@ -9,7 +9,7 @@ use Opis\JsonSchema\{
 class SchemaValidator
 {
 
-    public function validateSchema($data,$schemaName)
+    public function validateSchema($data, $schemaName)
     {
         $values = json_decode($data);
         $schema = '';
@@ -23,7 +23,11 @@ class SchemaValidator
         }
 
         if($schemaName == 'positions'){
-            $schema = Schema::fromJsonString(file_get_contents(__DIR__ . '/../Schemas/WorkingPosition.json'));
+            $schema = Schema::fromJsonString(file_get_contents(__DIR__ . '/../Schemas/WorkingPositionSchema.json'));
+        }
+
+        if($schemaName == 'vacations'){
+            $schema = Schema::fromJsonString(file_get_contents(__DIR__ . '/../Schemas/VacationsSchema.json'));
         }
 
         $validator = new Validator();

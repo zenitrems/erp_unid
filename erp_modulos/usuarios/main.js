@@ -6,6 +6,20 @@ $(document).ready(function () {
         console.log("hola");
     });
 
+    $('#id_empleado').selectpicker('refresh')
+    $('#id_empleado').selectpicker({
+        liveSearch: true,
+        liveSearchNormalize: true,
+        size: 5
+    });
+
+    $('#department').selectpicker('refresh')
+    $('#department').selectpicker({
+        liveSearch: true,
+        liveSearchNormalize: true,
+        size: 5
+    });
+
     $("#newUser").click(function () {
         obj = {
             action: "insertUser",
