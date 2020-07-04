@@ -6,9 +6,9 @@ error_reporting(0);
 $id_usr = $_SESSION["id"];
 if (isset($id_usr)) {
     //Traer id del modulo actual
-    $idModuloCursosEmpleados = $db->select("modulos", "id_modulo", ["nombre_modulo" => "cursos_empleados"]);
+    $idModuloCursosGrupos = $db->select("modulos", "id_modulo", ["nombre_modulo" => "cursos_grupos"]);
     //Si no puede consultar este modulo mostrar pagina de error
-    if (!in_array($idModuloCursosEmpleados[0], $_SESSION["consultar"])) {
+    if (!in_array($idModuloCursosGrupos[0], $_SESSION["consultar"])) {
         header("Location:" . URL . "/403.html");
     } else {
 ?>
@@ -44,22 +44,22 @@ if (isset($id_usr)) {
                                         <!-- Img title -->
                                         <div class="page-title-icon">
                                             <?php
-                                            $iconoCursosEmpleados = $db->get("modulos", "icono_modulo", ["nombre_modulo" => "cursos_empleados"]);
+                                            $iconoCursosGrupo = $db->get("modulos", "icono_modulo", ["nombre_modulo" => "cursos_grupos"]);
                                             ?>
-                                            <i class="<?php echo $iconoCursosEmpleados; ?>"></i>
+                                            <i class="<?php echo $iconoCursosGrupo; ?>"></i>
                                         </div>
                                         <!-- Title & subtitle -->
                                         <div>
-                                            Consultar cursos de empleados
+                                            Consultar cursos de grupos
                                         </div>
                                     </div>
                                     <div class="page-title-actions">
                                         <?php
                                         //Si el id del modulo está en el array de permisos insertar muestra el boton
-                                        if (in_array($idModuloCursosEmpleados[0], $_SESSION["insertar"])) :
+                                        if (in_array($idModuloCursosGrupos[0], $_SESSION["insertar"])) :
                                         ?>
                                             <button class="btn btn-outline-success" data-toggle="modal" data-target="#modal" id="newCourseEmployee">
-                                                Añadir curso a empleado
+                                                Añadir curso a grupo
                                             </button>
                                         <?php
                                         endif;
@@ -75,7 +75,7 @@ if (isset($id_usr)) {
                                                 <thead>
                                                     <tr>
                                                         <th>#</th>
-                                                        <th>Empleado</th>
+                                                        <th>Grupo</th>
                                                         <th>Curso</th>
                                                         <th>Status</th>
                                                         <?php
@@ -87,7 +87,7 @@ if (isset($id_usr)) {
                                                                 $existeStatusTer += 1;
                                                             }
                                                         }
-                                                        if (in_array($idModuloCursosEmpleados[0], $_SESSION["editar"]) || in_array($idModuloCursosEmpleados[0], $_SESSION["eliminar"])  || $existeStatusTer > 0) :
+                                                        if (in_array($idModuloCursosGrupos[0], $_SESSION["editar"]) || in_array($idModuloCursosGrupos[0], $_SESSION["eliminar"])  || $existeStatusTer > 0) :
                                                         ?>
                                                             <th>Acciones</th>
                                                         <?php
@@ -98,34 +98,34 @@ if (isset($id_usr)) {
                                                 </thead>
                                                 <tbody>
                                                     <?php
-                                                    $coursesEmployee = $db->query("SELECT cursos.nombre_curso AS curso, cursos_empleados.id AS id, cursos_empleados.status_curso AS status, CONCAT(empleados_rh.name,' ',empleados_rh.lastname) AS empleado
+                                                    $coursesEmployee = $db->query("SELECT cursos.nombre_curso AS curso, cursos_empleados.id AS id, cursos_empleados.status_curso AS status, grupos.nombre_grupo AS grupo
                                                                                     FROM cursos
                                                                                     INNER JOIN
                                                                                     cursos_empleados
                                                                                     ON 
                                                                                     cursos.id_curso = cursos_empleados.id_curso
                                                                                     INNER JOIN
-                                                                                    empleados_rh
+                                                                                    grupos
                                                                                     ON 
-                                                                                    empleados_rh.id = cursos_empleados.id_empleado
+                                                                                    grupos.id_grupo = cursos_empleados.id_grupo
                                                                                     ORDER BY
-                                                                                    Empleado ASC")->fetchAll();
+                                                                                    grupo ASC")->fetchAll();
                                                     $number = 1;
                                                     foreach ($coursesEmployee as $courseEmployee) {
                                                     ?>
                                                         <tr>
                                                             <th scope="row"><?php echo $number; ?></th>
-                                                            <td><?php echo utf8_encode(ucfirst($courseEmployee['empleado'])) ?></td>
+                                                            <td><?php echo utf8_encode(ucfirst($courseEmployee['grupo'])) ?></td>
                                                             <td><?php echo utf8_encode(ucfirst($courseEmployee['curso'])) ?></td>
                                                             <td><?php echo $courseEmployee['status']; ?> </td>
                                                             <?php
                                                             //Si el id del modulo está en el array de permisos editar y eliminar muestra el td
-                                                            if (in_array($idModuloCursosEmpleados[0], $_SESSION["editar"]) || in_array($idModuloCursosEmpleados[0], $_SESSION["eliminar"]) || $existeStatusTer > 0) :
+                                                            if (in_array($idModuloCursosGrupos[0], $_SESSION["editar"]) || in_array($idModuloCursosGrupos[0], $_SESSION["eliminar"]) || $existeStatusTer > 0) :
                                                             ?>
                                                                 <td>
                                                                     <?php
                                                                     //Si el id del modulo está en el array de permisos editar muestra el boton
-                                                                    if (in_array($idModuloCursosEmpleados[0], $_SESSION["editar"])) :
+                                                                    if (in_array($idModuloCursosGrupos[0], $_SESSION["editar"])) :
                                                                     ?>
                                                                         <button class="btnEdit mr-2 btn btn-outline-primary" data="<?php echo $courseEmployee['id'] ?>" data-toggle="modal" data-target="#modal">
                                                                             Editar
@@ -134,7 +134,7 @@ if (isset($id_usr)) {
                                                                     endif;
 
                                                                     //Si el id del modulo está en el array de permisos eliminar muestra el boton
-                                                                    if (in_array($idModuloCursosEmpleados[0], $_SESSION["eliminar"])) :
+                                                                    if (in_array($idModuloCursosGrupos[0], $_SESSION["eliminar"])) :
                                                                     ?>
                                                                         <button class="btnDelete mr-2 btn btn-outline-danger" data="<?php echo $courseEmployee['id'] ?>">
                                                                             Eliminar
@@ -147,7 +147,7 @@ if (isset($id_usr)) {
                                                                     ?>
                                                                         <form action="certificado.php" method="POST">
                                                                             <input type="submit" value="Diploma" class="btnDiploma mr-2 btn btn-outline-warning" id="btnDiploma" style="margin-top: 4px;"></input>
-                                                                            <input type="hidden" name="empleado" value="<?php echo $courseEmployee['empleado']; ?>">
+                                                                            <input type="hidden" name="grupo" value="<?php echo $courseEmployee['grupo']; ?>">
                                                                             <input type="hidden" name="curso" value="<?php echo $courseEmployee['curso']; ?>">
                                                                         </form>
                                                                     <?php
@@ -180,7 +180,7 @@ if (isset($id_usr)) {
             <script src="<?php echo constant("URL") ?>/assets/scripts/main.js"></script>
             <script src="<?php echo constant("URL") ?>/vendor/components/jquery/jquery.min.js"></script>
             <script src="<?php echo constant("URL") ?>/vendor/components/chosen/chosen.jquery.min.js"></script>
-            <script src="<?php echo constant("URL") ?>/erp_modulos/cursos_empleados/main.js"></script>
+            <script src="<?php echo constant("URL") ?>/erp_modulos/cursos_grupos/main.js"></script>
         </body>
 
         </html>
@@ -190,57 +190,53 @@ if (isset($id_usr)) {
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Añadir nuevo curso a empleado</h5>
+                        <h5 class="modal-title">Añadir nuevo curso a grupo</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
                         <form id="formCoursesEmployee">
-                            <div class="id_empleadoo" id="id_empleadoo">
-                                <div class="form-row">
-                                    <div class="col-md-12 mb-3">
-                                        <label for="id_empleado">Empleado(s)</label>
-                                        <select name="id_empleado" id="id_empleado" multiple class="chosen-select form-control" data-placeholder="Selecciona Empleado(s)">
-                                            <?php
-                                            $employees = $db->query("SELECT CONCAT(empleados_rh.name,' ',empleados_rh.lastname) AS empleado, id FROM empleados_rh")->fetchAll();
-                                            foreach ($employees as $employee) {
-                                            ?>
-                                                <option value="<?php echo $employee['id'] ?>">
-                                                    <?php echo utf8_encode(ucfirst($employee["empleado"])) ?>
-                                                </option>
-                                            <?php
-                                            }
-                                            ?>
-                                        </select>
-                                    </div>
+                            <div class="form-row" id="grupo_many">
+                                <div class="col-md-12 mb-3">
+                                    <label for="id_grupo_many">Grupo(s)</label>
+                                    <select name="id_grupo_many" id="id_grupo_many" multiple class="chosen-select form-control" data-placeholder="Selecciona Grupo(s)">
+                                        <?php
+                                        $groups = $db->select("grupos", "*");
+                                        foreach ($groups as $group) {
+                                        ?>
+                                            <option value="<?php echo $group['id_grupo'] ?>">
+                                                <?php echo utf8_encode(ucfirst($group["nombre_grupo"])) ?>
+                                            </option>
+                                        <?php
+                                        }
+                                        ?>
+                                    </select>
                                 </div>
                             </div>
-                            <div class="id_empleado22" id="id_empleado22">
-                                <div class="form-row">
-                                    <div class="col-md-12 mb-3">
-                                        <label for="id_empleado2">Empleado</label>
-                                        <select name="id_empleado2" id="id_empleado2" class="chosen-select form-control" data-placeholder="Empleado">
-                                            <option value="0">Selecciona un Empleado</option>
-                                            <?php
-                                            $employees = $db->query("SELECT CONCAT(empleados_rh.name,' ',empleados_rh.lastname) AS empleado, id FROM empleados_rh")->fetchAll();
-                                            foreach ($employees as $employee) {
-                                            ?>
-                                                <option value="<?php echo $employee['id'] ?>">
-                                                    <?php echo utf8_encode(ucfirst($employee["empleado"])) ?>
-                                                </option>
-                                            <?php
-                                            }
-                                            ?>
-                                        </select>
-                                    </div>
+                            <div class="form-row" id="grupo_one">
+                                <div class="col-md-12 mb-3">
+                                    <label for="id_grupo_one">Grupo</label>
+                                    <select name="id_grupo_one" id="id_grupo_one" class="chosen-select form-control">
+                                        <option value="0">Seleccionar</option>
+                                        <?php
+                                        $groups = $db->select("grupos", "*");
+                                        foreach ($groups as $group) {
+                                        ?>
+                                            <option value="<?php echo $group['id_grupo'] ?>">
+                                                <?php echo utf8_encode(ucfirst($group["nombre_grupo"])) ?>
+                                            </option>
+                                        <?php
+                                        }
+                                        ?>
+                                    </select>
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="col-md-12 mb-3">
                                     <label for="id_curso">Curso</label>
                                     <select name="id_curso" id="id_curso" class="chosen-select form-control">
-                                        <option value="0">Selecciona un curso</option>
+                                        <option value="0">Seleccionar</option>
                                         <?php
                                         $courses = $db->select("cursos", "*");
                                         foreach ($courses as $course) {
@@ -255,12 +251,12 @@ if (isset($id_usr)) {
                                 </div>
                             </div>
                             <!-- Select Status -->
-                            <div class="form-row">
+                            <div class="form-row" id="select-status">
                                 <div class="col-md-12 mb-3">
-                                    <label for="status_curso" id="label_status">Status</label>
-                                    <select name="status_curso" id="status_curso" class="status_curso form-control hidden">
+                                    <label for="status_curso">Status</label>
+                                    <select name="status_curso" id="status_curso" class="chosen-select form-control">
                                         <option value="0">
-                                            Selecciona un Status
+                                            Seleccionar
                                         </option>
                                         <option value="Nuevo">
                                             Nuevo

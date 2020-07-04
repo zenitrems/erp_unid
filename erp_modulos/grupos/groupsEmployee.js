@@ -1,68 +1,55 @@
 $(document).ready(function () {
-    var obj = {};
+    var obj = {}
 
     $(".chosen-select").chosen({
         no_results_text: "Oops, no se encontraron resultados para: ",
         width: "100%",
-        max_selected_options: 7
-    });
+    })
 
-    $(".chosen-select").bind("chosen:maxselected", function () { 
-        alert('Máximo 7 empleados por inserción, en honor al comandante');
-     }); 
-
-    $("#newCourseEmployee").click(function () {
+    $("#newGroupEmployee").click(function () {
         obj = {
-            action: "insertCourseEmployee",
-        };
-        $(".modal-title").text("Añadir nuevo curso a empleado");
-        $("#btnInsertCourseEmployee").text("Añadir");
-        $("#status_curso").css('display','none');
-        $("#label_status").css('display','none');
-        $("#id_empleado22").css('display','none');
-        $("#id_empleadoo").css('display','block');
-        // $("#formCoursesEmployee").reset();
-        $("#id_curso").val("0").trigger("chosen:updated")
+            action: "insertGroupEmployee",
+        }
+        $("#select-one-id").css("display", "none")
+        $(".modal-title").text("Asignar grupo a empleado(s)")
+        $("#btnInsertGroupEmployee").text("Asignar")
+        $("#id_grupo").val("0").trigger("chosen:updated")
         $("#id_empleado").val("").trigger("chosen:updated")
-    });
+    })
 
-    $(".btnEdit").click(function () {
-        let id = $(this).attr("data");
+    $(".btnEditGroupEmployee").click(function () {
+        let id = $(this).attr("data")
         obj = {
-            action: "getCourseEmployee",
+            action: "getGroupEmployee",
             id: id,
-        };
+        }
         $.post(
             "functions.php",
             obj,
             function (res) {
-                $(".status_curso").val(res.status_curso);
-                $("#id_empleado2").val(res.id_empleado);
-                $("#id_curso").val(res.id_curso);
-                $("#id_empleado2").trigger("chosen:updated");
-                $("#id_curso").trigger("chosen:updated");
+                $("#id_grupo").val(res.id_grupo)
+                $("#id_empleado_one").val(res.id_empleado)
+                $("#id_grupo").trigger("chosen:updated")
+                $("#id_empleado_one").trigger("chosen:updated")
                 obj = {
-                    action: "updateCourseEmployee",
+                    action: "updateGroupEmployee",
                     id: id,
-                };
+                }
             },
             "JSON"
-        );
-        $(".modal-title").text("Editar");
-        $("#btnInsertCourseEmployee").text("Editar");
-        $("#status_curso").css('display','block');
-        $("#label_status").css('display','block');
-        $("#id_empleadoo").css('display','none');
-        $("#id_empleado22").css('display','block');
-        $("#formCoursesEmployee")[0].reset();
-    });
+        )
+        $("#select-many-id").css("display", "none")
+        $("#select-one-id").css("display", "block")
+        $(".modal-title").text("Editar registro")
+        $("#btnInsertGroupEmployee").text("Editar")
+    })
 
-    $(".btnDelete").click(function () {
-        let id = $(this).attr("data");
+    $(".btnDeleteGroupEmployee").click(function () {
+        let id = $(this).attr("data")
         obj = {
-            action: "deleteCourseEmployee",
+            action: "deleteGroupEmployee",
             id: id,
-        };
+        }
         Swal.fire({
             title: "¿Estás seguro?",
             text: "No podrás revertir los cambios.",
@@ -84,25 +71,29 @@ $(document).ready(function () {
                                 title: "¡Perfecto!",
                                 text: "Registro eliminado correctamente",
                             }).then(() => {
-                                location.reload();
-                            });
+                                location.reload()
+                            })
                         }
                     },
                     "JSON"
-                );
+                )
             }
-        });
-    });
+        })
+    })
 
-    $("#btnInsertCourseEmployee").click(function () {
-        $("#modal")
-            .find("select")
-            .map(function (i, e) {
-                obj[e.name] = $(this).val();
-            });
+    $("#btnInsertGroupEmployee").click(function () {
+        obj.id_grupo = $("#id_grupo").val()
+        if ($("#id_empleado").val() == "") {
+            obj.id_empleado = 0
+        } else {
+            obj.id_empleado = $("#id_empleado").val()
+        }
+        obj.id_empleado_one = $("#id_empleado_one").val()
+
+        console.log(obj)
 
         switch (obj.action) {
-            case "insertCourseEmployee":
+            case "insertGroupEmployee":
                 $.post(
                     "functions.php",
                     obj,
@@ -112,29 +103,29 @@ $(document).ready(function () {
                                 icon: "error",
                                 title: "Error...",
                                 text: "Campos vacios, favor de llenarlos correctamente",
-                            });
+                            })
                         } else if (res.status == 2) {
                             Swal.fire({
                                 icon: "error",
                                 title: "Error...",
                                 text:
-                                    "El curso que estas tratando de añadir ya ha sido asignado al empleado",
-                            });
+                                    "El grupo que estas tratando de añadir ya ha sido asignado al empleado",
+                            })
                         } else if (res.status == 1) {
                             Swal.fire({
                                 icon: "success",
                                 title: "¡Perfecto!",
-                                text: "Registro ingresado correctamente",
+                                text: "Registro añadido correctamente",
                             }).then(() => {
-                                location.reload();
-                            });
+                                location.reload()
+                            })
                         }
                     },
                     "JSON"
-                );
-                break;
+                )
+                break
 
-            case "updateCourseEmployee":
+            case "updateGroupEmployee":
                 $.post(
                     "functions.php",
                     obj,
@@ -144,29 +135,23 @@ $(document).ready(function () {
                                 icon: "error",
                                 title: "Error...",
                                 text: "Campos vacios, favor de llenarlos correctamente",
-                            });
-                        } else if (res.status == 2) {
-                            Swal.fire({
-                                icon: "error",
-                                title: "Error...",
-                                text: "Favor de editar algún dato",
-                            });
+                            })
                         } else if (res.status == 1) {
                             Swal.fire({
                                 icon: "success",
                                 title: "¡Perfecto!",
-                                text: "Registro editado correctamente",
+                                text: "Grupo editado correctamente",
                             }).then(() => {
-                                location.reload();
-                            });
+                                location.reload()
+                            })
                         }
                     },
                     "JSON"
-                );
-                break;
+                )
+                break
 
             default:
-                break;
+                break
         }
-    });
-});
+    })
+})
