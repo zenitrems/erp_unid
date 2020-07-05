@@ -80,19 +80,11 @@ if (isset($id_usr)) {
                                                         <th>Status</th>
                                                         <?php
                                                         //Si el id del modulo se encuentra en el array de permisos editar o eliminar muestra el th
-                                                        $consultaStatus = $db->select("cursos_empleados", "*");
-                                                        $existeStatusTer = 0;
-                                                        foreach ($consultaStatus as $status) {
-                                                            if ($status['status_curso'] == "Terminado") {
-                                                                $existeStatusTer += 1;
-                                                            }
-                                                        }
-                                                        if (in_array($idModuloCursosGrupos[0], $_SESSION["editar"]) || in_array($idModuloCursosGrupos[0], $_SESSION["eliminar"])  || $existeStatusTer > 0) :
+                                                        if (in_array($idModuloCursosGrupos[0], $_SESSION["editar"]) || in_array($idModuloCursosGrupos[0], $_SESSION["eliminar"])) :
                                                         ?>
                                                             <th>Acciones</th>
                                                         <?php
                                                         endif;
-
                                                         ?>
                                                     </tr>
                                                 </thead>
@@ -120,7 +112,7 @@ if (isset($id_usr)) {
                                                             <td><?php echo $courseEmployee['status']; ?> </td>
                                                             <?php
                                                             //Si el id del modulo está en el array de permisos editar y eliminar muestra el td
-                                                            if (in_array($idModuloCursosGrupos[0], $_SESSION["editar"]) || in_array($idModuloCursosGrupos[0], $_SESSION["eliminar"]) || $existeStatusTer > 0) :
+                                                            if (in_array($idModuloCursosGrupos[0], $_SESSION["editar"]) || in_array($idModuloCursosGrupos[0], $_SESSION["eliminar"])) :
                                                             ?>
                                                                 <td>
                                                                     <?php
@@ -139,17 +131,6 @@ if (isset($id_usr)) {
                                                                         <button class="btnDelete mr-2 btn btn-outline-danger" data="<?php echo $courseEmployee['id'] ?>">
                                                                             Eliminar
                                                                         </button>
-                                                                    <?php
-                                                                    endif;
-
-                                                                    //Si el status del empleado es == Terminado muestra el btn Obtener Diploma
-                                                                    if ($courseEmployee['status'] == "Terminado") :
-                                                                    ?>
-                                                                        <form action="certificado.php" method="POST">
-                                                                            <input type="submit" value="Diploma" class="btnDiploma mr-2 btn btn-outline-warning" id="btnDiploma" style="margin-top: 4px;"></input>
-                                                                            <input type="hidden" name="grupo" value="<?php echo $courseEmployee['grupo']; ?>">
-                                                                            <input type="hidden" name="curso" value="<?php echo $courseEmployee['curso']; ?>">
-                                                                        </form>
                                                                     <?php
                                                                     endif;
                                                                     ?>

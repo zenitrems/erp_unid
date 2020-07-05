@@ -158,6 +158,7 @@ if (isset($id_usr)) {
                                                                 <th>#</th>
                                                                 <th>Nombre</th>
                                                                 <th>Empleado</th>
+                                                                <th>Curso</th>
                                                                 <?php
                                                                 //Si el id del modulo se encuentra en el array de permisos editar o eliminar muestra el th
                                                                 if (in_array($idModuloGrupos[0], $_SESSION["editar"]) || in_array($idModuloGrupos[0], $_SESSION["eliminar"])) :
@@ -171,10 +172,12 @@ if (isset($id_usr)) {
                                                         </thead>
                                                         <tbody>
                                                             <?php
-                                                            $groupsEmployee = $db->query("SELECT grupos_empleados.id AS id, grupos.nombre_grupo AS nombre, CONCAT(empleados_rh.name,' ', empleados_rh.lastname) AS empleado
-                                                                            FROM grupos
-                                                                            INNER JOIN grupos_empleados ON grupos_empleados.id_grupo = grupos.id_grupo
-                                                                            INNER JOIN empleados_rh ON grupos_empleados.id_empleado = empleados_rh.id")->fetchAll();
+                                                            $groupsEmployee = $db->query("SELECT grupos_empleados.id AS id, grupos.nombre_grupo AS nombre, CONCAT(empleados_rh.name,' ', empleados_rh.lastname) AS empleado, cursos.nombre_curso AS curso
+                                                                            FROM grupos_empleados
+                                                                            INNER JOIN grupos ON grupos_empleados.id_grupo = grupos.id_grupo
+                                                                            INNER JOIN empleados_rh ON grupos_empleados.id_empleado = empleados_rh.id
+                                                                            INNER JOIN cursos ON grupos_empleados.id_curso = cursos.id_curso
+                                                                            ORDER BY nombre ASC")->fetchAll();
                                                             $number = 1;
                                                             foreach ($groupsEmployee as $groupEmployee) {
                                                             ?>
@@ -182,6 +185,7 @@ if (isset($id_usr)) {
                                                                     <th scope="row"><?php echo $number; ?></th>
                                                                     <td><?php echo utf8_encode(ucfirst($groupEmployee['nombre'])) ?></td>
                                                                     <td><?php echo utf8_encode(ucfirst($groupEmployee['empleado'])) ?></td>
+                                                                    <td><?php echo utf8_encode(ucfirst($groupEmployee['curso'])) ?></td>
                                                                     <?php
                                                                     //Si el id del modulo está en el array de permisos editar y eliminar muestra el td
                                                                     if (in_array($idModuloGrupos[0], $_SESSION["editar"]) || in_array($idModuloGrupos[0], $_SESSION["eliminar"])) :
@@ -293,6 +297,20 @@ if (isset($id_usr)) {
                                         <?php
                                         }
                                         ?>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-row" id="select-many-cursos">
+                                <div class="col-md-12 mb-3">
+                                    <label for="id_curso">Curso(s)</label>
+                                    <select name="id_curso_many" id="id_curso_many" multiple class="chosen-select form-control" data-placeholder="Selecciona Curso(s)">
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-row" id="select-one-curso">
+                                <div class="col-md-12 mb-3">
+                                    <label for="id_curso">Curso</label>
+                                    <select data-placeholder="Seleccionar curso" name="id_curso_one" id="id_curso_one" class="chosen-select form-control">
                                     </select>
                                 </div>
                             </div>

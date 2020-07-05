@@ -38,6 +38,10 @@ if ($_POST) {
             deleteGroupEmployee($_POST["id"]);
             break;
 
+        case "getCursosByGrupo":
+            getCursosByGrupo($_POST["id_grupo"]);
+            break;
+
         default:
             # code...
             break;
@@ -109,27 +113,30 @@ function insertGroupEmployee()
     global $db;
     $idGrupo = $_POST["id_grupo"];
     $idEmpleado = $_POST["id_empleado"];
-    $duplicateGroupEmployee = false;
+    $idCurso = $_POST["id_curso_many"];
+    $duplicateCourseEmployee = false;
 
-    if ($idGrupo == "0" || $idEmpleado == "0") {
+    if ($idGrupo == "0" || $idEmpleado == "0" || $idCurso == "0") {
         $res["status"] = 0;
     } else {
-        if (sizeof($idEmpleado) == 1) {
-            $duplicateGroupEmployee = validateGroupEmployee($idEmpleado, $idGrupo);
-            if (!$duplicateGroupEmployee) {
-                $db->insert("grupos_empleados", ["id_grupo" => $idGrupo, "id_empleado" => $idEmpleado[0]]);
+        if (sizeof($idEmpleado) == 1 && sizeof($idCurso) == 1) {
+            $duplicateCourseEmployee = validateCourseEmployee($idEmpleado[0], $idCurso[0]);
+            if (!$duplicateCourseEmployee) {
+                $db->insert("grupos_empleados", ["id_grupo" => $idGrupo, "id_empleado" => $idEmpleado[0], "id_curso" => $idCurso[0]]);
                 $res["status"] = 1;
             } else {
                 $res["status"] = 2;
             }
         } else {
-            foreach ($idEmpleado as $id) {
-                $duplicateGroupEmployee = validateGroupEmployee($id, $idGrupo);
-                if (!$duplicateGroupEmployee) {
-                    $db->insert("grupos_empleados", ["id_grupo" => $idGrupo, "id_empleado" => $id]);
-                    $res["status"] = 1;
-                } else {
-                    $res["status"] = 2;
+            foreach ($idEmpleado as $idEmp) {
+                foreach ($idCurso as $idCur) {
+                    $duplicateCourseEmployee = validateCourseEmployee($idEmp, $idCur);
+                    if (!$duplicateCourseEmployee) {
+                        $db->insert("grupos_empleados", ["id_grupo" => $idGrupo, "id_empleado" => $idEmp, "id_curso" => $idCur]);
+                        $res["status"] = 1;
+                    } else {
+                        $res["status"] = 2;
+                    }
                 }
             }
         }
@@ -149,17 +156,23 @@ function updateGroupEmployee($id)
 {
     global $db;
     $idGrupo = $_POST["id_grupo"];
+    $idCurso = $_POST["id_curso_one"];
     $idEmpleado = $_POST["id_empleado_one"];
 
-    if ($idGrupo == "0" || $idEmpleado == "0") {
+    if ($idGrupo == "0" || $idCurso == null || $idEmpleado == "0") {
         $res["status"] = 0;
     } else {
-        $db->update(
-            "grupos_empleados",
-            ["id_grupo" => $idGrupo, "id_empleado" => $idEmpleado],
-            ["id" => $id]
-        );
-        $res["status"] = 1;
+        $duplicateCourseEmployee = validateCourseEmployee($idEmpleado, $idCurso);
+        if (!$duplicateCourseEmployee) {
+            $db->update(
+                "grupos_empleados",
+                ["id_grupo" => $idGrupo, "id_empleado" => $idEmpleado, "id_curso" => $idCurso],
+                ["id" => $id]
+            );
+            $res["status"] = 1;
+        } else {
+            $res["status"] = 2;
+        }
     }
 
     echo json_encode($res);
@@ -185,13 +198,23 @@ function validateGroup($nombreGrupo)
     }
 }
 
-function validateGroupEmployee($idEmpleado, $idGrupo)
+function validateCourseEmployee($idEmpleado, $idCurso)
 {
     global $db;
     $groupEmployees = $db->select("grupos_empleados", "*", ["id_empleado" => $idEmpleado]);
     foreach ($groupEmployees as $groupEmployee) {
-        if ($groupEmployee["id_grupo"] == $idGrupo) {
+        if ($groupEmployee["id_curso"] == $idCurso) {
             return true;
         }
     }
+}
+
+function getCursosByGrupo($idGrupo)
+{
+    global $db;
+    $courses = $db->query("SELECT cursos.id_curso AS id_curso, cursos.nombre_curso AS nombre_curso
+    FROM cursos_empleados
+    INNER JOIN cursos ON cursos_empleados.id_curso = cursos.id_curso
+    WHERE cursos_empleados.id_grupo = $idGrupo")->fetchAll();
+    echo json_encode($courses);
 }
