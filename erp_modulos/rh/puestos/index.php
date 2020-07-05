@@ -132,10 +132,49 @@
                                 </select>
                             </div>
                         </div>
+                        <!-- insertar horarios y dias-->
+                        <div class="form-check">
+                        <label for="form-check">Horario</label>
+                            <div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="positionLunes" name="positionLunes" value="1">
+                            <input type="time" id="positionTimeL" name="positionTimeL">
+                            <input type="time" id="positionTimeL2" name="positionTimeL2">
+                            <label for="positionLunes" class="form-check-label">Lunes</label>
+                            </div>
+                            <div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="positionMartes" name="positionMartes" value="1">
+                            <input type="time" id="positionTimeM" name="positionTimeM">
+                            <input type="time" id="positionTimeM2" name="positionTimeM2">
+                            <label for="positionMartes" class="form-check-label">Martes</label>
+                            </div>
+                            <div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="positionMiercoles" name="positionMiercoles" value="1">
+                            <input type="time" id="positionTimeMi" name="positionTimeMi">
+                            <input type="time" id="positionTimeMi2" name="positionTimeMi2">
+                            <label for="positionMiercoles" class="form-check-label">Miercoles</label>
+                            </div>
+                            <div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="positionJueves" name="positionJueves" value="1">
+                            <input type="time" id="positionTimeJ" name="positionTimeJ">
+                            <input type="time" id="positionTimeJ2" name="positionTimeJ2">
+                            <label for="positionJueves" class="form-check-label">Jueves</label>
+                            </div>
+                            <div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="positionViernes" name="positionViernes" value="1">
+                            <input type="time" id="positionTimeV" name="positionTimeV">
+                            <input type="time" id="positionTimeV2" name="positionTimeV2">
+                            <label for="positionViernes" class="form-check-label">Viernes</label>
+                            </div>
+                        </div>
+                        <br>
+                        <!--fin horarios y dia-->
+
                         <div class="form-check">
                             <input type="checkbox" class="form-check-input" id="positionIsSupervisor" name="positionIsSupervisor" value="1">
                             <label for="positionIsSupervisor" class="form-check-label">Es supervisor</label>
                         </div>
+
+                        
                 </form>
                 </div>
                 <div class="modal-footer">
@@ -167,7 +206,47 @@
                                     <option>Choose</option>
                                 </select>
                             </div>
+                            
                         </div>
+
+                        <!-- insertar horarios y dias-->
+                        <div class="form-check">
+                        <label for="form-check">Horario</label>
+                            <div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="positionLunes" name="positionLunes" value="1">
+                            <input type="time" id="positionTimeL" name="positionTimeL">
+                            <input type="time" id="positionTimeL2" name="positionTimeL2">
+                            <label for="positionLunes" class="form-check-label">Lunes</label>
+                            </div>
+                            <div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="positionMartes" name="positionMartes" value="1">
+                            <input type="time" id="positionTimeM" name="positionTimeM">
+                            <input type="time" id="positionTimeM2" name="positionTimeM2">
+                            <label for="positionMartes" class="form-check-label">Martes</label>
+                            </div>
+                            <div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="positionMiercoles" name="positionMiercoles" value="1">
+                            <input type="time" id="positionTimeMi" name="positionTimeMi">
+                            <input type="time" id="positionTimeMi2" name="positionTimeMi2">
+                            <label for="positionMiercoles" class="form-check-label">Miercoles</label>
+                            </div>
+                            <div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="positionJueves" name="positionJueves" value="1">
+                            <input type="time" id="positionTimeJ" name="positionTimeJ">
+                            <input type="time" id="positionTimeJ2" name="positionTimeJ2">
+                            <label for="positionJueves" class="form-check-label">Jueves</label>
+                            </div>
+                            <div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="positionViernes" name="positionViernes" value="1">
+                            <input type="time" id="positionTimeV" name="positionTimeV">
+                            <input type="time" id="positionTimeV2" name="positionTimeV2">
+                            <label for="positionViernes" class="form-check-label">Viernes</label>
+                            </div>
+                        </div>
+                        <br>
+                        <!--fin horarios y dia-->
+
+
                         <div class="form-check">
                             <input type="checkbox" class="form-check-input" id="edit-positionIsSupervisor" name="positionIsSupervisor" value="1">
                             <label for="positionIsSupervisor" class="form-check-label">Es supervisor</label>
