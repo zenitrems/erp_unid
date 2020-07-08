@@ -122,7 +122,7 @@ function insertGroupEmployee()
         if (sizeof($idEmpleado) == 1 && sizeof($idCurso) == 1) {
             $duplicateCourseEmployee = validateCourseEmployee($idEmpleado[0], $idCurso[0]);
             if (!$duplicateCourseEmployee) {
-                $db->insert("grupos_empleados", ["id_grupo" => $idGrupo, "id_empleado" => $idEmpleado[0], "id_curso" => $idCurso[0]]);
+                $db->insert("grupos_empleados", ["id_grupo" => $idGrupo, "id_empleado" => $idEmpleado[0], "id_curso" => $idCurso[0], "status_empleadoCurso" => 'Nuevo']);
                 $res["status"] = 1;
             } else {
                 $res["status"] = 2;
@@ -132,7 +132,7 @@ function insertGroupEmployee()
                 foreach ($idCurso as $idCur) {
                     $duplicateCourseEmployee = validateCourseEmployee($idEmp, $idCur);
                     if (!$duplicateCourseEmployee) {
-                        $db->insert("grupos_empleados", ["id_grupo" => $idGrupo, "id_empleado" => $idEmp, "id_curso" => $idCur]);
+                        $db->insert("grupos_empleados", ["id_grupo" => $idGrupo, "id_empleado" => $idEmp, "id_curso" => $idCur, "status_empleadoCurso" => 'Nuevo']);
                         $res["status"] = 1;
                     } else {
                         $res["status"] = 2;
@@ -158,15 +158,16 @@ function updateGroupEmployee($id)
     $idGrupo = $_POST["id_grupo"];
     $idCurso = $_POST["id_curso_one"];
     $idEmpleado = $_POST["id_empleado_one"];
+    $status_empleadoCurso = $_POST["status_empleadoCurso"];
 
-    if ($idGrupo == "0" || $idCurso == null || $idEmpleado == "0") {
+    if ($idGrupo == "0" || $idCurso == null || $idEmpleado == "0" || $status_empleadoCurso == "0") {
         $res["status"] = 0;
     } else {
-        $duplicateCourseEmployee = validateCourseEmployee($idEmpleado, $idCurso);
+        $duplicateCourseEmployee = validateCourseEmployee2($idEmpleado, $idCurso, $status_empleadoCurso);
         if (!$duplicateCourseEmployee) {
             $db->update(
                 "grupos_empleados",
-                ["id_grupo" => $idGrupo, "id_empleado" => $idEmpleado, "id_curso" => $idCurso],
+                ["id_grupo" => $idGrupo, "id_empleado" => $idEmpleado, "id_curso" => $idCurso, "status_empleadoCurso" => $status_empleadoCurso],
                 ["id" => $id]
             );
             $res["status"] = 1;
@@ -204,6 +205,17 @@ function validateCourseEmployee($idEmpleado, $idCurso)
     $groupEmployees = $db->select("grupos_empleados", "*", ["id_empleado" => $idEmpleado]);
     foreach ($groupEmployees as $groupEmployee) {
         if ($groupEmployee["id_curso"] == $idCurso) {
+            return true;
+        }
+    }
+}
+
+function validateCourseEmployee2($idEmpleado, $idCurso, $status_empleadoCurso)
+{
+    global $db;
+    $groupEmployees = $db->select("grupos_empleados", "*", ["id_empleado" => $idEmpleado]);
+    foreach ($groupEmployees as $groupEmployee) {
+        if (($groupEmployee["id_curso"] == $idCurso && $groupEmployee['status_empleadoCurso'] == $status_empleadoCurso)) {
             return true;
         }
     }

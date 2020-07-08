@@ -58,6 +58,7 @@ if (isset($id_usr)) {
                                         //Si el id del modulo está en el array de permisos insertar muestra el boton
                                         if (in_array($idModuloGrupos[0], $_SESSION["insertar"])) :
                                         ?>
+                                            <!-- <a href="../../erp_vistas/cursosVista/index.php" target="_blank" style="margin-right: 10px;"> Ir a CursosVista</a> -->
                                             <button class="btn btn-outline-success" data-toggle="modal" data-target="#modal" id="newGroup">
                                                 Añadir nuevo grupo
                                             </button>
@@ -159,6 +160,7 @@ if (isset($id_usr)) {
                                                                 <th>Nombre</th>
                                                                 <th>Empleado</th>
                                                                 <th>Curso</th>
+                                                                <th>Status</th>
                                                                 <?php
                                                                 //Si el id del modulo se encuentra en el array de permisos editar o eliminar muestra el th
                                                                 if (in_array($idModuloGrupos[0], $_SESSION["editar"]) || in_array($idModuloGrupos[0], $_SESSION["eliminar"])) :
@@ -172,7 +174,7 @@ if (isset($id_usr)) {
                                                         </thead>
                                                         <tbody>
                                                             <?php
-                                                            $groupsEmployee = $db->query("SELECT grupos_empleados.id AS id, grupos.nombre_grupo AS nombre, CONCAT(empleados_rh.name,' ', empleados_rh.lastname) AS empleado, cursos.nombre_curso AS curso
+                                                            $groupsEmployee = $db->query("SELECT grupos_empleados.id AS id, grupos.nombre_grupo AS nombre, CONCAT(empleados_rh.name,' ', empleados_rh.lastname) AS empleado, cursos.nombre_curso AS curso, grupos_empleados.status_empleadoCurso AS statu
                                                                             FROM grupos_empleados
                                                                             INNER JOIN grupos ON grupos_empleados.id_grupo = grupos.id_grupo
                                                                             INNER JOIN empleados_rh ON grupos_empleados.id_empleado = empleados_rh.id
@@ -186,6 +188,7 @@ if (isset($id_usr)) {
                                                                     <td><?php echo utf8_encode(ucfirst($groupEmployee['nombre'])) ?></td>
                                                                     <td><?php echo utf8_encode(ucfirst($groupEmployee['empleado'])) ?></td>
                                                                     <td><?php echo utf8_encode(ucfirst($groupEmployee['curso'])) ?></td>
+                                                                    <td><?php echo utf8_encode(ucfirst($groupEmployee['statu'])) ?></td>
                                                                     <?php
                                                                     //Si el id del modulo está en el array de permisos editar y eliminar muestra el td
                                                                     if (in_array($idModuloGrupos[0], $_SESSION["editar"]) || in_array($idModuloGrupos[0], $_SESSION["eliminar"])) :
@@ -346,6 +349,29 @@ if (isset($id_usr)) {
                                         <?php
                                         }
                                         ?>
+                                    </select>
+                                </div>
+                            </div>
+                            <!-- Select Status -->
+                            <div class="form-row" id="select-status" class="select-status">
+                                <div class="col-md-12 mb-3">
+                                    <label for="status_curso">Status</label>
+                                    <select name="status_curso" id="status_curso" class="chosen-select form-control">
+                                        <option value="0">
+                                            Seleccionar
+                                        </option>
+                                        <option value="Nuevo">
+                                            Nuevo
+                                        </option>
+                                        <option value="Pendiente">
+                                            Pendiente
+                                        </option>
+                                        <option value="En proceso">
+                                            En proceso
+                                        </option>
+                                        <option value="Terminado">
+                                            Terminado
+                                        </option>
                                     </select>
                                 </div>
                             </div>

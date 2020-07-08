@@ -3,9 +3,9 @@ require_once "../../config/config.php";
 require_once ROOT_PATH . "/libs/database.php";
 session_start();
 error_reporting(0);
-$id_usr = $_SESSION["id"];
 // $id_usr = $_SESSION["id"];
-if (isset($id_usr)) {
+$id_empleado = $_SESSION["id_empleado"];
+if (isset($id_empleado)) {
 ?>
   <!DOCTYPE html>
   <html lang="en">
@@ -23,7 +23,7 @@ if (isset($id_usr)) {
         <div class="banner">
           <div class="text">
             <?php
-            $empleado = $db->get("empleados_rh", ["name", "lastname"], ["id" => 4]);
+            $empleado = $db->get("empleados_rh", ["name", "lastname"], ["id" => $id_empleado]);
             $empleadoFullName = $empleado['name'] . ' ' . $empleado['lastname'];
             ?>
             <h2>Bienvenido <?php echo $empleadoFullName; ?> a Vista Cursos</h2>
@@ -36,7 +36,7 @@ if (isset($id_usr)) {
       </section>
 
       <?php
-      $consultaEmpleadoCursos = $db->query("SELECT cursos.nombre_curso AS curso, cursos.fecha_inicio AS inicio, cursos.fecha_final AS final, cursos.horario_curso AS horario, cursos_empleados.status_curso AS statu, grupos.nombre_grupo AS grupo
+      $consultaEmpleadoCursos = $db->query("SELECT cursos.nombre_curso AS curso, cursos.fecha_inicio AS inicio, cursos.fecha_final AS final, cursos.horario_curso AS horario, grupos_empleados.status_empleadoCurso AS statu, grupos.nombre_grupo AS grupo
         FROM cursos
         INNER JOIN
         grupos_empleados ON cursos.id_curso = grupos_empleados.id_curso
@@ -44,7 +44,7 @@ if (isset($id_usr)) {
         grupos ON grupos.id_grupo = grupos_empleados.id_grupo
         INNER JOIN
         cursos_empleados ON grupos_empleados.id_curso = cursos_empleados.id_curso AND grupos_empleados.id_grupo = cursos_empleados.id_grupo
-        WHERE grupos_empleados.id_empleado = 4;
+        WHERE grupos_empleados.id_empleado = $id_empleado;
         ")->fetchAll();
       // var_dump($consultaEmpleadoCursos);
       if ($consultaEmpleadoCursos[0] == '') {
@@ -89,6 +89,7 @@ if (isset($id_usr)) {
                     <input type="submit" value="Diploma" class="btnDiploma" id="btnDiploma"></input>
                     <input type="hidden" name="empleado" value="<?php echo $empleadoFullName; ?>">
                     <input type="hidden" name="curso" value="<?php echo $consulta['curso']; ?>">
+                    <input type="hidden" name="grupo" value="<?php echo $consulta['grupo']; ?>">
                   </form>
                 <?php } ?>
               </div>

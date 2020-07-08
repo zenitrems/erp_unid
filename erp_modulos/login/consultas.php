@@ -40,6 +40,7 @@ function login()
 
                 //Declarar variables de session
                 $_SESSION["id"] = $usuario["id_usr"];
+                $_SESSION["id_empleado"] = $usuario["id_empleado"];
                 $_SESSION["nombre_usr"] = $usuario["nombre_usr"];
                 $_SESSION["consultar"] = explode(" ", $permisos[0]["consultar"]);
                 $_SESSION["insertar"] = explode(" ", $permisos[0]["insertar"]);

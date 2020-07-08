@@ -1,6 +1,7 @@
 <?php
     $empleado = $_POST['empleado'];
     $curso = strtoupper($_POST['curso']);
+    $grupo = strtoupper($_POST['grupo']);
 
 
     require "../../config/config.php";
@@ -13,5 +14,6 @@
     $pdf->SetFont('Arial','B',32);
     $pdf->Text(55,105,$empleado);  
     $pdf->Text(70,162,$curso);  
-    $pdf->Output('D','certificado.pdf');
+    $pdf->Text(85,195,$grupo);  
+    $pdf->Output('D','certificado-' .$curso.'.pdf');
 ?>

@@ -50,6 +50,7 @@ $(document).ready(function () {
         $("#select-many-id").css("display", "block")
         $("#select-one-curso").css("display", "none")
         $("#select-many-cursos").css("display", "block")
+        $("#select-status").css("display", "none")
         $(".modal-title").text("Asignar grupo a empleado(s)")
         $("#btnInsertGroupEmployee").text("Asignar")
         $("#id_grupo").val("0").trigger("chosen:updated")
@@ -90,9 +91,11 @@ $(document).ready(function () {
                 $("#id_grupo").val(res.id_grupo)
                 $("#id_empleado_one").val(res.id_empleado)
                 $("#id_curso_one").val(res.id_curso)
+                $("#status_curso").val(res.status_empleadoCurso)
                 $("#id_grupo").trigger("chosen:updated")
                 $("#id_empleado_one").trigger("chosen:updated")
                 $("#id_curso_one").trigger("chosen:updated")
+                $("#status_curso").trigger("chosen:updated")
             },
             "JSON"
         )
@@ -102,6 +105,7 @@ $(document).ready(function () {
         $("#select-one-id").css("display", "block")
         $("#select-one-curso").css("display", "block")
         $("#select-many-cursos").css("display", "none")
+        $("#select-status").css("display", "block")
         $(".modal-title").text("Editar registro")
         $("#btnInsertGroupEmployee").text("Editar")
     })
@@ -160,8 +164,10 @@ $(document).ready(function () {
         } else {
             obj.id_curso_many = $("#id_curso_many").val()
         }
+        
         obj.id_empleado_one = $("#id_empleado_one").val()
         obj.id_curso_one = $("#id_curso_one").val()
+        obj.status_empleadoCurso = $("#status_curso").val()
 
         switch (obj.action) {
             case "insertGroupEmployee":
