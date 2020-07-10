@@ -164,7 +164,7 @@ $(document).ready(function () {
         } else {
             obj.id_curso_many = $("#id_curso_many").val()
         }
-        
+
         obj.id_empleado_one = $("#id_empleado_one").val()
         obj.id_curso_one = $("#id_curso_one").val()
         obj.status_empleadoCurso = $("#status_curso").val()
@@ -196,6 +196,18 @@ $(document).ready(function () {
                             }).then(() => {
                                 location.reload()
                             })
+                        } else if (res.status == 3) {
+                            Swal.fire({
+                                icon: "error",
+                                title: "Error...",
+                                text: `El empleado ${res.empleado} pertenece a el ${res.grupo}`,
+                            })
+                        } else if (res.status == 4) {
+                            Swal.fire({
+                                icon: "error",
+                                title: "Error...",
+                                text: `Uno o más empleados pertenecen a un grupo diferente que ${res.nombre_grupo}`,
+                            })
                         }
                     },
                     "JSON"
@@ -217,7 +229,7 @@ $(document).ready(function () {
                             Swal.fire({
                                 icon: "success",
                                 title: "¡Perfecto!",
-                                text: "Grupo editado correctamente",
+                                text: "Registro editado correctamente",
                             }).then(() => {
                                 location.reload()
                             })
@@ -227,6 +239,12 @@ $(document).ready(function () {
                                 title: "Error...",
                                 text:
                                     "El curso que estas tratando de añadir ya ha sido asignado al empleado",
+                            })
+                        } else if (res.status == 3) {
+                            Swal.fire({
+                                icon: "error",
+                                title: "Error...",
+                                text: `El empleado ${res.nombre} ya pertenece a el ${res.grupo} y no puede ser editado`,
                             })
                         }
                     },
