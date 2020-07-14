@@ -18,7 +18,8 @@ if (isset($id_usr)) {
         <head>
             <meta charset="UTF-8" />
             <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no" />
-            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css"/>
+            <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+            <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.css">
             <link rel="stylesheet" href="<?php echo constant("URL") ?>/main.css" />
             <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
             <title>Usuarios</title>
@@ -111,7 +112,7 @@ if (isset($id_usr)) {
                                                             <td><?php echo $user['telefono_usr']; ?></td>
                                                             <td><?php echo $user['direccion_usr']; ?></td>
                                                             <td><?php echo ucfirst(strtolower($user["nombre_perfil"])); ?></td>
-                                                            <td><?php echo $user['number'] ? $user['number'] : 'N/A';?></td>
+                                                            <td><?php echo $user['number'] ? $user['number'] : 'N/A'; ?></td>
                                                             <?php
                                                             //Si el id del modulo está en el array de permisos editar y eliminar muestra el td
                                                             if (in_array($idModuloUsuarios[0], $_SESSION["editar"]) || in_array($idModuloUsuarios[0], $_SESSION["eliminar"])) :
@@ -162,9 +163,9 @@ if (isset($id_usr)) {
             <!-- /Full Container -->
             <script src="<?php echo constant("URL") ?>/assets/scripts/main.js"></script>
             <script src="<?php echo constant("URL") ?>/vendor/components/jquery/jquery.min.js"></script>
-            <script src="<?php echo constant("URL") ?>/erp_modulos/usuarios/main.js"></script>
             <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
+            <script src="https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.js"></script>
+            <script src="<?php echo constant("URL") ?>/erp_modulos/usuarios/main.js"></script>
         </body>
 
         </html>

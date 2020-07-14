@@ -1,67 +1,58 @@
 $(document).ready(function () {
-    var obj = {};
+    var obj = {}
 
     $(".btnModulo").click(function (e) {
-        e.preventDefault();
-        console.log("hola");
-    });
+        e.preventDefault()
+        console.log("hola")
+    })
 
-    $('#id_empleado').selectpicker('refresh')
-    $('#id_empleado').selectpicker({
-        liveSearch: true,
-        liveSearchNormalize: true,
-        size: 5
-    });
-
-    $('#department').selectpicker('refresh')
-    $('#department').selectpicker({
-        liveSearch: true,
-        liveSearchNormalize: true,
-        size: 5
-    });
+    $("#tableUsers").bootstrapTable({
+        pagination: true,
+        search: true,
+    })
 
     $("#newUser").click(function () {
         obj = {
             action: "insertUser",
-        };
-        $(".modal-title").text("Nuevo Usuario");
-        $("#btnInsertUser").text("Insertar");
-        $("#formUsers")[0].reset();
-    });
+        }
+        $(".modal-title").text("Nuevo Usuario")
+        $("#btnInsertUser").text("Insertar")
+        $("#formUsers")[0].reset()
+    })
 
     $(".btnEdit").click(function () {
-        let id = $(this).attr("data");
+        let id = $(this).attr("data")
         obj = {
             action: "getUser",
             id_usr: id,
-        };
+        }
         $.post(
             "functions.php",
             obj,
             function (res) {
-                $("#nombre_usr").val(res.nombre_usr);
-                $("#correo_usr").val(res.correo_usr);
-                $("#password_usr").val(res.password_usr);
-                $("#telefono_usr").val(res.telefono_usr);
-                $("#direccion_usr").val(res.direccion_usr);
-                $("#id_perfil").val(res.id_perfil);
+                $("#nombre_usr").val(res.nombre_usr)
+                $("#correo_usr").val(res.correo_usr)
+                $("#password_usr").val(res.password_usr)
+                $("#telefono_usr").val(res.telefono_usr)
+                $("#direccion_usr").val(res.direccion_usr)
+                $("#id_perfil").val(res.id_perfil)
                 obj = {
                     action: "updateUser",
                     id_usr: id,
-                };
+                }
             },
             "JSON"
-        );
-        $(".modal-title").text("Editar Usuario");
-        $("#btnInsertUser").text("Editar");
-    });
+        )
+        $(".modal-title").text("Editar Usuario")
+        $("#btnInsertUser").text("Editar")
+    })
 
     $(".btnDelete").click(function () {
-        let id = $(this).attr("data");
+        let id = $(this).attr("data")
         obj = {
             action: "deleteUser",
             id_usr: id,
-        };
+        }
         Swal.fire({
             title: "¿Estás seguro?",
             text: "No podrás revertir los cambios.",
@@ -71,7 +62,7 @@ $(document).ready(function () {
             cancelButtonText: "Cancelar",
             cancelButtonColor: "#3085d6",
             confirmButtonText: "Eliminar",
-        }).then((result) => {
+        }).then(result => {
             if (result.value) {
                 $.post(
                     "functions.php",
@@ -83,27 +74,27 @@ $(document).ready(function () {
                                 title: "¡Perfecto!",
                                 text: "Usuario eliminado correctamente",
                             }).then(() => {
-                                location.reload();
-                            });
+                                location.reload()
+                            })
                         }
                     },
                     "JSON"
-                );
+                )
             }
-        });
-    });
+        })
+    })
 
     $("#btnInsertUser").click(function () {
         $("#modalUsers")
             .find("input")
             .map(function (i, e) {
-                obj[e.name] = $(this).val();
-            });
+                obj[e.name] = $(this).val()
+            })
         $("#modalUsers")
             .find("select")
             .map(function (i, e) {
-                obj[e.name] = $(this).val();
-            });
+                obj[e.name] = $(this).val()
+            })
 
         switch (obj.action) {
             case "insertUser":
@@ -116,38 +107,38 @@ $(document).ready(function () {
                                 icon: "error",
                                 title: "Error...",
                                 text: "Campos vacios, favor de llenarlos correctamente.",
-                            });
+                            })
                         } else if (res.status == 2) {
                             Swal.fire({
                                 icon: "error",
                                 title: "Error...",
                                 text: "Favor de ingresar un correo electronico valido.",
-                            });
+                            })
                         } else if (res.status == 3) {
                             Swal.fire({
                                 icon: "error",
                                 title: "Error...",
                                 text: "Correo electrico ya esta en uso.",
-                            });
+                            })
                         } else if (res.status == 4) {
                             Swal.fire({
                                 icon: "error",
                                 title: "Error...",
                                 text: "Inserte un número de telefono valido.",
-                            });
+                            })
                         } else if (res.status == 1) {
                             Swal.fire({
                                 icon: "success",
                                 title: "¡Perfecto!",
                                 text: "Usuario ingresado correctamente",
                             }).then(() => {
-                                location.reload();
-                            });
+                                location.reload()
+                            })
                         }
                     },
                     "JSON"
-                );
-                break;
+                )
+                break
 
             case "updateUser":
                 $.post(
@@ -159,35 +150,35 @@ $(document).ready(function () {
                                 icon: "error",
                                 title: "Error...",
                                 text: "Campos vacios, favor de llenarlos correctamente.",
-                            });
+                            })
                         } else if (res.status == 2) {
                             Swal.fire({
                                 icon: "error",
                                 title: "Error...",
                                 text: "Favor de ingresar un correo electronico valido.",
-                            });
+                            })
                         } else if (res.status == 4) {
                             Swal.fire({
                                 icon: "error",
                                 title: "Error...",
                                 text: "Inserte un número de telefono valido.",
-                            });
+                            })
                         } else if (res.status == 1) {
                             Swal.fire({
                                 icon: "success",
                                 title: "¡Perfecto!",
                                 text: "Usuario editado correctamente",
                             }).then(() => {
-                                location.reload();
-                            });
+                                location.reload()
+                            })
                         }
                     },
                     "JSON"
-                );
-                break;
+                )
+                break
 
             default:
-                break;
+                break
         }
-    });
-});
+    })
+})

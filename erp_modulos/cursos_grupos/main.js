@@ -6,6 +6,11 @@ $(document).ready(function () {
         width: "100%",
     })
 
+    $("#tableCoursesGroups").bootstrapTable({
+        pagination: true,
+        search: true,
+    })
+
     $("#newCourseEmployee").click(function () {
         obj = {
             action: "insertCourseEmployee",
@@ -64,7 +69,7 @@ $(document).ready(function () {
             cancelButtonText: "Cancelar",
             cancelButtonColor: "#3085d6",
             confirmButtonText: "Eliminar",
-        }).then((result) => {
+        }).then(result => {
             if (result.value) {
                 $.post(
                     "functions.php",
@@ -115,8 +120,7 @@ $(document).ready(function () {
                             Swal.fire({
                                 icon: "error",
                                 title: "Error...",
-                                text:
-                                    "El curso que estas tratando de añadir ya ha sido asignado al grupo",
+                                text: "El curso que estas tratando de añadir ya ha sido asignado al grupo",
                             })
                         } else if (res.status == 1) {
                             Swal.fire({

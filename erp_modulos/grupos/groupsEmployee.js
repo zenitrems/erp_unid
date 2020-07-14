@@ -1,6 +1,11 @@
 $(document).ready(function () {
     var obj = {}
 
+    $("#tableGroupsEmployees").bootstrapTable({
+        pagination: true,
+        search: true,
+    })
+
     $("#id_grupo").change(function () {
         obj.action = "getCursosByGrupo"
         obj.id_grupo = $("#id_grupo").val()
@@ -12,7 +17,7 @@ $(document).ready(function () {
                 if (res.length > 0) {
                     $("#id_curso_many").attr("data-placeholder", "Selecciona curso(s)")
                     stringHTML = res
-                        .map((item) => {
+                        .map(item => {
                             return `
                             <option value="${item.id_curso}">${item.nombre_curso}</option>
                         `
@@ -20,14 +25,8 @@ $(document).ready(function () {
                         .join("")
                 } else {
                     stringHTML = ``
-                    $("#id_curso_many").attr(
-                        "data-placeholder",
-                        "El grupo seleccionado no cuenta con ningún curso"
-                    )
-                    $("#id_curso_one").attr(
-                        "data-placeholder",
-                        "El grupo seleccionado no cuenta con ningún curso"
-                    )
+                    $("#id_curso_many").attr("data-placeholder", "El grupo seleccionado no cuenta con ningún curso")
+                    $("#id_curso_one").attr("data-placeholder", "El grupo seleccionado no cuenta con ningún curso")
                 }
                 $("#id_curso_many").html(stringHTML)
                 $("#id_curso_one").html(stringHTML)
@@ -76,7 +75,7 @@ $(document).ready(function () {
                     obj,
                     function (res) {
                         stringHTML = res
-                            .map((item) => {
+                            .map(item => {
                                 return `
                                     <option value="${item.id_curso}">${item.nombre_curso}</option>
                                 `
@@ -125,7 +124,7 @@ $(document).ready(function () {
             cancelButtonText: "Cancelar",
             cancelButtonColor: "#3085d6",
             confirmButtonText: "Eliminar",
-        }).then((result) => {
+        }).then(result => {
             if (result.value) {
                 $.post(
                     "functions.php",
@@ -185,8 +184,7 @@ $(document).ready(function () {
                             Swal.fire({
                                 icon: "error",
                                 title: "Error...",
-                                text:
-                                    "El curso que estas tratando de añadir ya ha sido asignado al empleado(s)",
+                                text: "El curso que estas tratando de añadir ya ha sido asignado al empleado(s)",
                             })
                         } else if (res.status == 1) {
                             Swal.fire({
@@ -237,8 +235,7 @@ $(document).ready(function () {
                             Swal.fire({
                                 icon: "error",
                                 title: "Error...",
-                                text:
-                                    "El curso que estas tratando de añadir ya ha sido asignado al empleado",
+                                text: "El curso que estas tratando de añadir ya ha sido asignado al empleado",
                             })
                         } else if (res.status == 3) {
                             Swal.fire({

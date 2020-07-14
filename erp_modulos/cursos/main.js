@@ -1,4 +1,9 @@
 $(document).ready(function () {
+    $("#tableCourses").bootstrapTable({
+        pagination: true,
+        search: true,
+    })
+
     var obj = {}
 
     $("#fecha_inicio").change(function () {
@@ -134,7 +139,7 @@ $(document).ready(function () {
             cancelButtonText: "Cancelar",
             cancelButtonColor: "#3085d6",
             confirmButtonText: "Eliminar",
-        }).then((result) => {
+        }).then(result => {
             if (result.value) {
                 $.post(
                     "functions.php",

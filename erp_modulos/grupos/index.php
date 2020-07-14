@@ -18,6 +18,8 @@ if (isset($id_usr)) {
         <head>
             <meta charset="UTF-8" />
             <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no" />
+            <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+            <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.css">
             <link rel="stylesheet" href="<?php echo constant("URL") ?>/vendor/components/chosen/chosen.css">
             <link rel="stylesheet" href="<?php echo constant("URL") ?>/main.css" />
             <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
@@ -83,7 +85,7 @@ if (isset($id_usr)) {
                                         <div class="col-lg-12">
                                             <div class="main-card mb-3 card">
                                                 <div class="card-body">
-                                                    <table class="mb-0 table table-bordered text-center">
+                                                    <table class="mb-0 table table-bordered text-center" id="tableGroups">
                                                         <thead>
                                                             <tr>
                                                                 <th>#</th>
@@ -153,7 +155,7 @@ if (isset($id_usr)) {
                                         <div class="col-lg-12">
                                             <div class="main-card mb-3 card">
                                                 <div class="card-body">
-                                                    <table class="mb-0 table table-bordered text-center">
+                                                    <table class="mb-0 table table-bordered text-center" id="tableGroupsEmployees">
                                                         <thead>
                                                             <tr>
                                                                 <th>#</th>
@@ -242,6 +244,8 @@ if (isset($id_usr)) {
             <script src="<?php echo constant("URL") ?>/assets/scripts/main.js"></script>
             <script src="<?php echo constant("URL") ?>/vendor/components/jquery/jquery.min.js"></script>
             <script src="<?php echo constant("URL") ?>/vendor/components/chosen/chosen.jquery.min.js"></script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
+            <script src="https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.js"></script>
             <script src="<?php echo constant("URL") ?>/erp_modulos/grupos/groups.js"></script>
             <script src="<?php echo constant("URL") ?>/erp_modulos/grupos/groupsEmployee.js"></script>
         </body>

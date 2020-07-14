@@ -10,6 +10,11 @@ $(document).ready(function () {
         $("#formGroups")[0].reset()
     })
 
+    $("#tableGroups").bootstrapTable({
+        pagination: true,
+        search: true,
+    })
+
     function capitalizeFirstLetter(string) {
         return string.charAt(0).toUpperCase() + string.slice(1)
     }
@@ -51,7 +56,7 @@ $(document).ready(function () {
             cancelButtonText: "Cancelar",
             cancelButtonColor: "#3085d6",
             confirmButtonText: "Eliminar",
-        }).then((result) => {
+        }).then(result => {
             if (result.value) {
                 $.post(
                     "functions.php",
@@ -123,8 +128,7 @@ $(document).ready(function () {
                             Swal.fire({
                                 icon: "error",
                                 title: "Error...",
-                                text:
-                                    "Favor de editar el nombre de lo contrario, cancele la operación",
+                                text: "Favor de editar el nombre de lo contrario, cancele la operación",
                             })
                         } else if (res.status == 1) {
                             Swal.fire({
