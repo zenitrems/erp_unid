@@ -16,8 +16,10 @@ if (isset($id_usr)) {
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, 
         user-scalable=no, shrink-to-fit=no" />
         <link rel="stylesheet" href="<?php echo constant('URL') ?>/main.css" />
-        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-        <script src="<?php echo constant('URL') ?>/vendor/components/jquery/jquery.min.js"></script>
+        <link rel="stylesheet" href="<?php echo constant('URL') ?>/style.css" />
+        <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.17.1/dist/bootstrap-table.min.css">
+
+
         <title>Multimoneda</title>
     </head>
 
@@ -56,7 +58,7 @@ if (isset($id_usr)) {
                             <div class="col-lg-12">
                                 <div class="main-card mb-3 card">
                                     <div class="card-body">
-                                        <table class="mb-0 table table-bordered text-center">
+                                        <table class="mb-0 table table-bordered text-center" id="tableMultimoneda">
                                             <thead>
                                                 <tr>
                                                     <th>Fuente</th>
@@ -67,7 +69,7 @@ if (isset($id_usr)) {
                                             </thead>
                                             <tbody>
                                                 <?php
-                                                $multimoneda = $db->select("multimoneda", "*");
+                                                $multimoneda = $db->select("multimoneda", "*", ["ORDER" => ["id" => "DESC"],]);
                                                 if ($multimoneda) {
                                                     foreach ($multimoneda as $row) {
                                                         # code...
@@ -98,6 +100,14 @@ if (isset($id_usr)) {
         </div>
         <!-- /Full Container -->
         <script type="text/javascript" src="<?php echo constant('URL') ?>/assets/scripts/main.js"></script>
+        <script src="<?php echo constant('URL') ?>/vendor/components/jquery/jquery.min.js"></script>
+        <script src="https://unpkg.com/bootstrap-table@1.17.1/dist/bootstrap-table.min.js"></script>
+        <script>
+            $('#tableMultimoneda').bootstrapTable({
+                pagination: true,
+                search: true
+            })
+        </script>
     </body>
 
     </html>
