@@ -10,7 +10,7 @@ $(document).ready(function () {
         }
     })
 
-    $("#tableModules").bootstrapTable({
+    $("#tablemodulos").bootstrapTable({
         pagination: true,
         search: true,
     })
