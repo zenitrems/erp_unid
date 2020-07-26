@@ -229,12 +229,12 @@ if (isset($id_usr)) {
                                     <div class="main-card card">
                                         <div class="card-body">
                                             <h5 class="card-title">Seleccione modulos a consultar</h5>
-                                            <div class="position-relative form-group">
+                                            <div class="position-relative form-group" style="display:grid; grid-template-columns: 1fr 1fr;">
                                                 <?php
-                                                $modules = $db->select("modulos", "*");
+                                                $modules = $db->select("modulos", "*", ["ORDER" => ["nombre_modulo" => "ASC"],]);
                                                 foreach ($modules as $module) {
                                                 ?>
-                                                    <div class="custom-checkbox custom-control custom-control-inline">
+                                                    <div class="custom-checkbox custom-control">
                                                         <input type="checkbox" id="consultar-<?php echo $module["id_modulo"] ?>" class="custom-control-input" name="consultar-<?php echo $module["id_modulo"] ?>" value="<?php echo $module["id_modulo"] ?>">
                                                         <label class="custom-control-label" for="consultar-<?php echo $module["id_modulo"] ?>">
                                                             <?php echo $module["nombre_modulo"] ?>
@@ -253,12 +253,12 @@ if (isset($id_usr)) {
                                     <div class="main-card card">
                                         <div class="card-body">
                                             <h5 class="card-title">Seleccione modulos para insertar datos</h5>
-                                            <div class="position-relative form-group">
+                                            <div class="position-relative form-group" style="display:grid; grid-template-columns: 1fr 1fr;">
                                                 <?php
-                                                $modules = $db->select("modulos", "*");
+                                                $modules = $db->select("modulos", "*", ["ORDER" => ["nombre_modulo" => "ASC"],]);
                                                 foreach ($modules as $module) {
                                                 ?>
-                                                    <div class="custom-checkbox custom-control custom-control-inline">
+                                                    <div class="custom-checkbox custom-control">
                                                         <input type="checkbox" id="insertar-<?php echo $module["id_modulo"] ?>" class="custom-control-input" name="insertar-<?php echo $module["id_modulo"] ?>" value="<?php echo $module["id_modulo"] ?>">
                                                         <label class="custom-control-label" for="insertar-<?php echo $module["id_modulo"] ?>">
                                                             <?php echo $module["nombre_modulo"] ?>
@@ -277,12 +277,12 @@ if (isset($id_usr)) {
                                     <div class="main-card card">
                                         <div class="card-body">
                                             <h5 class="card-title">Seleccione modulos para editar datos</h5>
-                                            <div class="position-relative form-group">
+                                            <div class="position-relative form-group" style="display:grid; grid-template-columns: 1fr 1fr;">
                                                 <?php
-                                                $modules = $db->select("modulos", "*");
+                                                $modules = $db->select("modulos", "*", ["ORDER" => ["nombre_modulo" => "ASC"],]);
                                                 foreach ($modules as $module) {
                                                 ?>
-                                                    <div class="custom-checkbox custom-control custom-control-inline">
+                                                    <div class="custom-checkbox custom-control">
                                                         <input type="checkbox" id="editar-<?php echo $module["id_modulo"] ?>" class="custom-control-input" name="editar-<?php echo $module["id_modulo"] ?>" value="<?php echo $module["id_modulo"] ?>">
                                                         <label class="custom-control-label" for="editar-<?php echo $module["id_modulo"] ?>">
                                                             <?php echo $module["nombre_modulo"] ?>
@@ -301,12 +301,12 @@ if (isset($id_usr)) {
                                     <div class="main-card card">
                                         <div class="card-body">
                                             <h5 class="card-title">Seleccione modulos para eliminar datos</h5>
-                                            <div class="position-relative form-group">
+                                            <div class="position-relative form-group" style="display:grid; grid-template-columns: 1fr 1fr;">
                                                 <?php
-                                                $modules = $db->select("modulos", "*");
+                                                $modules = $db->select("modulos", "*", ["ORDER" => ["nombre_modulo" => "ASC"],]);
                                                 foreach ($modules as $module) {
                                                 ?>
-                                                    <div class="custom-checkbox custom-control custom-control-inline">
+                                                    <div class="custom-checkbox custom-control">
                                                         <input type="checkbox" id="eliminar-<?php echo $module["id_modulo"] ?>" class="custom-control-input" name="editar-<?php echo $module["id_modulo"] ?>" value="<?php echo $module["id_modulo"] ?>">
                                                         <label class="custom-control-label" for="eliminar-<?php echo $module["id_modulo"] ?>">
                                                             <?php echo $module["nombre_modulo"] ?>

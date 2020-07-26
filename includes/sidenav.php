@@ -72,7 +72,7 @@ $modulosConsultar = array_intersect($modulos, $_SESSION["consultar"]);
                             <li class="links">
                                 <a href="<?php echo constant('URL') ?>/erp_modulos/<?php echo $modulo['modulo']; ?>/">
                                     <i class="metismenu-icon <?php echo $modulo['icono']; ?>"></i>
-                                    <?php echo "Consultar " . $modulo['modulo']; ?>
+                                    <?php echo $modulo['modulo']; ?>
                                 </a>
                             </li>
 
