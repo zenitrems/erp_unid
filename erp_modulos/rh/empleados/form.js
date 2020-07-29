@@ -13,8 +13,64 @@ document.addEventListener('DOMContentLoaded', async () => {
             $('#nationality').selectpicker('refresh')
             $('#nationality').selectpicker({
                 liveSearch: true,
-                liveSearchNormalize: true
+                liveSearchNormalize: true,
+                size: 5
             });
+        })
+        .catch(e => {
+            console.log(e)
+        })
+
+    const department = document.querySelector('#department')
+
+    department.addEventListener('change', event => {
+        const id = department.value
+        axios.get(`http://${window.location.hostname}/erp_modulos/rh/Api/positions?department=${id}`)
+            .then(response => {
+                const data = response.data
+                const rows = data.map(option => (`<option value="${option.id}">${option.positionName}</option>`))
+                const element = document.querySelector(`#position`)
+                element.innerHTML = rows.join('')
+                $('#position').selectpicker('refresh')
+                $('#position').selectpicker({
+                    liveSearch: true,
+                    liveSearchNormalize: true,
+                    size: 5
+                });
+            })
+            .catch(e => {
+                console.log(e)
+            })
+    })
+
+    await axios.get(`http://${window.location.hostname}/erp_modulos/rh/Api/departments`)
+        .then(response => {
+            const data = response.data
+            const rows = data.map(option => (`<option value="${option.id}">${option.name}</option>`))
+            department.innerHTML = rows.join('')
+            $('#department').selectpicker('refresh')
+            $('#department').selectpicker({
+                liveSearch: true,
+                liveSearchNormalize: true,
+                size: 5
+            });
+            const id = department.value
+            axios.get(`http://${window.location.hostname}/erp_modulos/rh/Api/positions?department=${id}`)
+                .then(response => {
+                    const data = response.data
+                    const rows = data.map(option => (`<option value="${option.id}">${option.positionName}</option>`))
+                    const element = document.querySelector(`#position`)
+                    element.innerHTML = rows.join('')
+                    $('#position').selectpicker('refresh')
+                    $('#position').selectpicker({
+                        liveSearch: true,
+                        liveSearchNormalize: true,
+                        size: 5
+                    });
+                })
+                .catch(e => {
+                    console.log(e)
+                })
         })
         .catch(e => {
             console.log(e)
@@ -40,7 +96,8 @@ document.addEventListener('DOMContentLoaded', async () => {
                     $('#suburb').selectpicker('refresh')
                     $('#suburb').selectpicker({
                         liveSearch: true,
-                        liveSearchNormalize: true
+                        liveSearchNormalize: true,
+                        size: 5
                     });
                 })
                 .catch(e => {
@@ -182,6 +239,8 @@ document.addEventListener('DOMContentLoaded', async () => {
                     children: data
                 }
             }
+
+            console.log(obj)
 
             const schools = document.querySelectorAll('.schools')
 

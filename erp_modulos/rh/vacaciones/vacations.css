@@ -1,0 +1,43 @@
+.modal {
+    top: 20%;
+}
+
+.section {
+    border-radius: 0 !important;
+    font-size: 17px;
+}
+
+.nav i {
+    padding: 2px
+}
+
+.dropdown-toggle {
+    background-color: white;
+}
+
+.start-date.in-range {
+    pointer-events: none;
+}
+
+table
+{
+    counter-reset: rowNumber;
+    table-layout: fixed;
+}
+
+table th, table td
+{
+    overflow: hidden;
+}
+
+table tr > td:first-child
+{
+    counter-increment: rowNumber;
+}
+
+table tr td:first-child::before
+{
+    content: counter(rowNumber);
+    min-width: 1em;
+    margin-right: 0.5em;
+}

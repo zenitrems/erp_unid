@@ -18,6 +18,10 @@ if (isset($id_usr)) {
         <head>
             <meta charset="UTF-8" />
             <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no" />
+            <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+            <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.css">
+
+            <link rel="stylesheet" href="<?php echo constant("URL") ?>/vendor/components/chosen/chosen.css">
             <link rel="stylesheet" href="<?php echo constant("URL") ?>/main.css" />
             <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
             <title>Usuarios</title>
@@ -77,8 +81,8 @@ if (isset($id_usr)) {
                                                         <th>Nombre</th>
                                                         <th>Correo electronico</th>
                                                         <th>Telefono</th>
-                                                        <th>Dirección</th>
                                                         <th>Perfil</th>
+                                                        <th>No. Empleado</th>
                                                         <?php
                                                         //Si el id del modulo se encuentra en el array de permisos editar o eliminar muestra el th
                                                         if (in_array($idModuloUsuarios[0], $_SESSION["editar"]) || in_array($idModuloUsuarios[0], $_SESSION["eliminar"])) :
@@ -94,9 +98,10 @@ if (isset($id_usr)) {
                                                     $users = $db->select(
                                                         "usuarios(usr)",
                                                         [
-                                                            "[><]perfiles(p)" => ["usr.id_perfil" => "id_perfil"]
+                                                            "[><]perfiles(p)" => ["usr.id_perfil" => "id_perfil"],
+                                                            "[>]empleados_rh(emp)" => ["usr.id_empleado" => "id"]
                                                         ],
-                                                        ["usr.id_usr", "usr.nombre_usr", "usr.correo_usr", "usr.telefono_usr", "usr.direccion_usr", "p.nombre_perfil"]
+                                                        ["usr.id_usr", "usr.nombre_usr", "usr.correo_usr", "usr.telefono_usr", "usr.direccion_usr", "p.nombre_perfil", "usr.id_empleado", "emp.number"]
                                                     );
                                                     $number = 1;
                                                     foreach ($users as $user) {
@@ -106,8 +111,8 @@ if (isset($id_usr)) {
                                                             <td><?php echo $user['nombre_usr']; ?></td>
                                                             <td><?php echo $user['correo_usr']; ?></td>
                                                             <td><?php echo $user['telefono_usr']; ?></td>
-                                                            <td><?php echo $user['direccion_usr']; ?></td>
                                                             <td><?php echo ucfirst(strtolower($user["nombre_perfil"])); ?></td>
+                                                            <td><?php echo $user['number'] ? $user['number'] : 'N/A'; ?></td>
                                                             <?php
                                                             //Si el id del modulo está en el array de permisos editar y eliminar muestra el td
                                                             if (in_array($idModuloUsuarios[0], $_SESSION["editar"]) || in_array($idModuloUsuarios[0], $_SESSION["eliminar"])) :
@@ -158,6 +163,9 @@ if (isset($id_usr)) {
             <!-- /Full Container -->
             <script src="<?php echo constant("URL") ?>/assets/scripts/main.js"></script>
             <script src="<?php echo constant("URL") ?>/vendor/components/jquery/jquery.min.js"></script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
+            <script src="https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.js"></script>
+            <script src="<?php echo constant("URL") ?>/vendor/components/chosen/chosen.jquery.min.js"></script>
             <script src="<?php echo constant("URL") ?>/erp_modulos/usuarios/main.js"></script>
         </body>
 
@@ -202,9 +210,32 @@ if (isset($id_usr)) {
                                 </div>
                             </div>
                             <div class="form-row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="department">Departamento</label>
+                                    <select class="form-control chosen-select" id="department" name="department">
+                                        <option value="0">Seleccione un departamento</option>
+                                        <?php
+                                        $deparments = $db->select("departamentos_rh", "*");
+                                        foreach ($deparments as $deparment) {
+                                        ?>
+                                            <option value="<?php echo $deparment['id']; ?>">
+                                                <?php echo ucfirst(strtolower($deparment["name"])); ?>
+                                            </option>
+                                        <?php
+                                        }
+                                        ?>
+                                    </select>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="id_empleado">No. Empleado</label>
+                                    <select class="form-control chosen-select" id="id_empleado" name="id_empleado" data-placeholder="Seleccione un empleado">
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-row">
                                 <div class="col-md-12 mb-3">
                                     <label for="id_perfil">Perfil</label>
-                                    <select name="id_perfil" id="id_perfil" class="form-control">
+                                    <select name="id_perfil" id="id_perfil" class="form-control chosen-select">
                                         <option value="0">Seleccione un perfil</option>
                                         <?php
                                         $perfiles = $db->select('perfiles', '*');

@@ -18,6 +18,8 @@ if (isset($id_usr)) {
         <head>
             <meta charset="UTF-8" />
             <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no" />
+            <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+            <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.css">
             <link rel="stylesheet" href="<?php echo constant("URL") ?>/main.css" />
             <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
             <title>Perfiles</title>
@@ -70,7 +72,7 @@ if (isset($id_usr)) {
                                 <div class="col-lg-12">
                                     <div class="main-card mb-3 card">
                                         <div class="card-body">
-                                            <table class="mb-0 table table-bordered text-center">
+                                            <table class="mb-0 table table-bordered text-center" id="tableProfiles">
                                                 <thead>
                                                     <tr>
                                                         <th>#</th>
@@ -93,15 +95,60 @@ if (isset($id_usr)) {
                                                     <?php
                                                     $profiles = $db->select("perfiles", "*");
                                                     $number = 1;
+                                                    // $i = 0;
                                                     foreach ($profiles as $profile) {
                                                     ?>
                                                         <tr>
                                                             <th scope="row"><?php echo $number; ?></th>
                                                             <td><?php echo ucfirst(strtolower($profile["nombre_perfil"])); ?></td>
-                                                            <td><?php echo $profile["consultar"]; ?></td>
-                                                            <td><?php echo $profile["insertar"]; ?></td>
-                                                            <td><?php echo $profile["editar"]; ?></td>
-                                                            <td><?php echo $profile["eliminar"]; ?></td>
+                                                            <td>
+                                                                <?php
+                                                                $consultarPerfiles = explode(' ', $profile['consultar']);
+                                                                foreach ($consultarPerfiles as $perfil) {
+                                                                    $consultasNomModulo = $db->select('modulos', 'nombre_modulo', ['id_modulo' => $perfil]);
+                                                                    foreach ($consultasNomModulo as $nombreMod) {
+                                                                        echo $nombreMod;
+                                                                        echo "<br>";
+                                                                    }
+                                                                }
+                                                                ?>
+                                                            </td>
+                                                            <td>
+                                                                <?php
+                                                                $insertarPerfiles = explode(' ', $profile['insertar']);
+                                                                foreach ($insertarPerfiles as $perfil) {
+                                                                    $insertarNomModulo = $db->select('modulos', 'nombre_modulo', ['id_modulo' => $perfil]);
+                                                                    foreach ($insertarNomModulo as $nombreMod) {
+                                                                        echo $nombreMod;
+                                                                        echo "<br>";
+                                                                    }
+                                                                }
+                                                                ?>
+                                                            </td>
+                                                            <td>
+                                                                <?php
+                                                                $editarPerfiles = explode(' ', $profile['editar']);
+                                                                foreach ($editarPerfiles as $perfil) {
+                                                                    $editarNomModulo = $db->select('modulos', 'nombre_modulo', ['id_modulo' => $perfil]);
+                                                                    foreach ($editarNomModulo as $nombreMod) {
+                                                                        echo $nombreMod;
+                                                                        echo "<br>";
+                                                                    }
+                                                                }
+                                                                ?>
+                                                            </td>
+                                                            <td>
+                                                                <?php
+                                                                $deletePerfiles = explode(' ', $profile['eliminar']);
+                                                                foreach ($deletePerfiles as $perfil) {
+                                                                    $deleteNomModulo = $db->select('modulos', 'nombre_modulo', ['id_modulo' => $perfil]);
+                                                                    foreach ($deleteNomModulo as $nombreMod) {
+                                                                        echo $nombreMod;
+                                                                        echo "<br>";
+                                                                    }
+                                                                }
+                                                                ?>
+                                                            </td>
                                                             <?php
                                                             //Si el id del modulo se encuentra en el array de permisos editar o eliminar muestra el td
                                                             if (in_array($idModuloPerfiles[0], $_SESSION["editar"]) || in_array($idModuloPerfiles[0], $_SESSION["eliminar"])) :
@@ -152,6 +199,8 @@ if (isset($id_usr)) {
             <!-- /Full Container -->
             <script type="text/javascript" src="<?php echo constant("URL") ?>/assets/scripts/main.js"></script>
             <script type="text/javascript" src="<?php echo constant("URL") ?>/vendor/components/jquery/jquery.min.js"></script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
+            <script src="https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.js"></script>
             <script type="text/javascript" src="<?php echo constant("URL") ?>/erp_modulos/perfiles/main.js"></script>
         </body>
 
@@ -180,12 +229,12 @@ if (isset($id_usr)) {
                                     <div class="main-card card">
                                         <div class="card-body">
                                             <h5 class="card-title">Seleccione modulos a consultar</h5>
-                                            <div class="position-relative form-group">
+                                            <div class="position-relative form-group" style="display:grid; grid-template-columns: 1fr 1fr;">
                                                 <?php
-                                                $modules = $db->select("modulos", "*");
+                                                $modules = $db->select("modulos", "*", ["ORDER" => ["nombre_modulo" => "ASC"],]);
                                                 foreach ($modules as $module) {
                                                 ?>
-                                                    <div class="custom-checkbox custom-control custom-control-inline">
+                                                    <div class="custom-checkbox custom-control">
                                                         <input type="checkbox" id="consultar-<?php echo $module["id_modulo"] ?>" class="custom-control-input" name="consultar-<?php echo $module["id_modulo"] ?>" value="<?php echo $module["id_modulo"] ?>">
                                                         <label class="custom-control-label" for="consultar-<?php echo $module["id_modulo"] ?>">
                                                             <?php echo $module["nombre_modulo"] ?>
@@ -204,12 +253,12 @@ if (isset($id_usr)) {
                                     <div class="main-card card">
                                         <div class="card-body">
                                             <h5 class="card-title">Seleccione modulos para insertar datos</h5>
-                                            <div class="position-relative form-group">
+                                            <div class="position-relative form-group" style="display:grid; grid-template-columns: 1fr 1fr;">
                                                 <?php
-                                                $modules = $db->select("modulos", "*");
+                                                $modules = $db->select("modulos", "*", ["ORDER" => ["nombre_modulo" => "ASC"],]);
                                                 foreach ($modules as $module) {
                                                 ?>
-                                                    <div class="custom-checkbox custom-control custom-control-inline">
+                                                    <div class="custom-checkbox custom-control">
                                                         <input type="checkbox" id="insertar-<?php echo $module["id_modulo"] ?>" class="custom-control-input" name="insertar-<?php echo $module["id_modulo"] ?>" value="<?php echo $module["id_modulo"] ?>">
                                                         <label class="custom-control-label" for="insertar-<?php echo $module["id_modulo"] ?>">
                                                             <?php echo $module["nombre_modulo"] ?>
@@ -228,12 +277,12 @@ if (isset($id_usr)) {
                                     <div class="main-card card">
                                         <div class="card-body">
                                             <h5 class="card-title">Seleccione modulos para editar datos</h5>
-                                            <div class="position-relative form-group">
+                                            <div class="position-relative form-group" style="display:grid; grid-template-columns: 1fr 1fr;">
                                                 <?php
-                                                $modules = $db->select("modulos", "*");
+                                                $modules = $db->select("modulos", "*", ["ORDER" => ["nombre_modulo" => "ASC"],]);
                                                 foreach ($modules as $module) {
                                                 ?>
-                                                    <div class="custom-checkbox custom-control custom-control-inline">
+                                                    <div class="custom-checkbox custom-control">
                                                         <input type="checkbox" id="editar-<?php echo $module["id_modulo"] ?>" class="custom-control-input" name="editar-<?php echo $module["id_modulo"] ?>" value="<?php echo $module["id_modulo"] ?>">
                                                         <label class="custom-control-label" for="editar-<?php echo $module["id_modulo"] ?>">
                                                             <?php echo $module["nombre_modulo"] ?>
@@ -252,12 +301,12 @@ if (isset($id_usr)) {
                                     <div class="main-card card">
                                         <div class="card-body">
                                             <h5 class="card-title">Seleccione modulos para eliminar datos</h5>
-                                            <div class="position-relative form-group">
+                                            <div class="position-relative form-group" style="display:grid; grid-template-columns: 1fr 1fr;">
                                                 <?php
-                                                $modules = $db->select("modulos", "*");
+                                                $modules = $db->select("modulos", "*", ["ORDER" => ["nombre_modulo" => "ASC"],]);
                                                 foreach ($modules as $module) {
                                                 ?>
-                                                    <div class="custom-checkbox custom-control custom-control-inline">
+                                                    <div class="custom-checkbox custom-control">
                                                         <input type="checkbox" id="eliminar-<?php echo $module["id_modulo"] ?>" class="custom-control-input" name="editar-<?php echo $module["id_modulo"] ?>" value="<?php echo $module["id_modulo"] ?>">
                                                         <label class="custom-control-label" for="eliminar-<?php echo $module["id_modulo"] ?>">
                                                             <?php echo $module["nombre_modulo"] ?>

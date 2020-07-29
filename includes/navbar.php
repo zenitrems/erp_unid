@@ -35,24 +35,16 @@
     </div>
     <!-- Header content -->
     <div class="app-header__content">
-        <div class="app-header-right">
+        <div class="app-header-right center">
             <div class="header-btn-lg pr-0">
                 <div class="widget-content p-0">
                     <div class="widget-content-wrapper">
                         <div class="widget-content-left">
-                            <div class="btn-group">
-                                <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="p-0 btn">
-                                    <img width="42" class="rounded-circle" src="" alt="" />
-                                    <i class="fa fa-angle-down ml-2 opacity-8"></i>
-                                </a>
-                                <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu dropdown-menu-right">
-                                    <a href="<?php echo constant("URL") ?>/includes/close_session.php" class="dropdown-item" tabindex="0">Log out</a>
-                                </div>
+                            <div class="btn-group nav-item pr-2">
+                                <span class="bold">Sesión actual: <?php echo $_SESSION["nombre_usr"] ?></span>
                             </div>
-                        </div>
-                        <div class="widget-content-left ml-3 header-user-info">
-                            <div class="widget-heading">
-                                <?php echo $_SESSION["nombre_usr"] ?>
+                            <div class="btn-group">
+                                <a href="<?php echo constant("URL") ?>/includes/close_session.php" class="btn btn-danger">Cerrar sesión <i class="fa fa-fw" aria-hidden="true"></i></a>
                             </div>
                         </div>
                     </div>

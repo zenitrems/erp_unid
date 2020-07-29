@@ -5,20 +5,26 @@ document.addEventListener('DOMContentLoaded', async () => {
     await axios.get(`http://${window.location.hostname}/erp_modulos/rh/Api/employees`)
         .then(response => {
             const rows = response.data.map((data, id) => (
-                `<tr class="d-flex" style="text-align: justify">
-                 <th scope="row" id=${id}>${id + 1}</th>
-                 <td class="col-2" data=${data.id}>${data.STATUS}</td>
-                 <td class="col" data=${data.id}>${data.position}</td>
-                 <td class="col-2" data=${data.id}>${data.lastname}</td>
-                 <td class="col-2" data=${data.id}>${data.mothersLastname}</td>
-                 <td class="col-2" data=${data.id}>${data.name}</td>
-                 <td class="col-2">
-                 <button class="btn btn-sm btn-primary" id="btn-edit" data-toggle="modal" data-target="#modal-edit" data=${data.id}  data-name="${data.name}">Editar</button>
-                 <button class="btn btn-sm btn-danger" id="btn-delete" data-toggle="modal" data-target="#modal-delete" data=${data.id} data-name="${data.name}">Eliminar</button>
+                `<tr style="text-align: justify">
+                 <th scope="row" style="text-align: center" id=${id}>${id + 1}</th>
+                 <td data=${data.id}>${data.STATUS}</td>
+                 <td data=${data.id}>${data.positionName}</td>
+                 <td data=${data.id}>${data.lastname}</td>
+                 <td data=${data.id}>${data.mothersLastname}</td>
+                 <td data=${data.id}>${data.name}</td>
+                 <td> 
+                 <button class="btn btn-sm btn-info" id="btn-view" data=${data.id}  data-name="${data.name}" data-tip="tooltip" title="Detalle" ><i class="fas fa-eye"></i></button>
+                 <button class="btn btn-sm btn-primary" id="btn-edit" data-toggle="modal" data-name="${data.name}" data-tip="tooltip" title="Editar" data-target="#modal-edit" data=${data.id}><i class="fas fa-edit"></i></button>
+                 <button class="btn btn-sm btn-danger" id="btn-delete" data-toggle="modal" data-name="${data.name}" data-tip="tooltip" title="Eliminar" data-target="#modal-delete" data=${data.id}><i class="fas fa-user-minus"></i></button>
                  </td>
                  </tr>`
             ));
             table.innerHTML += rows.join('')
+            $('#table-emp').bootstrapTable({
+                pagination: true,
+                search: true
+            })
+            $('[data-tip="tooltip"]').tooltip()
         })
         .catch(e => {
             console.log(e)

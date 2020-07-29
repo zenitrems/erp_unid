@@ -11,5 +11,6 @@ $db = new Medoo([
     'database_name' => DB,
     'server' => SERVER,
     'username' => USER,
-    'password' => PASSWORD
+    'password' => PASSWORD,
+    'charset' => 'utf8mb4',
 ]);
