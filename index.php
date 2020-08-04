@@ -15,6 +15,17 @@ if (isset($id_usr)) {
         user-scalable=no, shrink-to-fit=no" />
         <link rel="stylesheet" href="<?php echo constant("URL") ?>/main.css" />
         <script src="<?php echo constant("URL") ?>/vendor/components/jquery/jquery.min.js"></script>
+        <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.17.1/dist/bootstrap-table.min.css">
+        <style>
+            .wrapper {
+                grid-column-start: 1;
+                grid-column-end: 4;
+                grid-row-start: 1;
+                grid-row-end: 3;
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+            }
+        </style>
         <title>Dashboard</title>
     </head>
 
@@ -30,6 +41,105 @@ if (isset($id_usr)) {
                     <!-- Content -->
                     <div class="app-main__inner">
                         <h1>Dashboard</h1>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="main-card mb-3 card">
+                                    <div class="card-body">
+
+                                        <div class="wrapper">
+
+                                            <div class="alert">
+                                                <h5>Tareas completadas</h5>
+                                                <hr />
+                                                <div class="col">
+                                                    <table class="mb-0 table table-bordered text-center" id="tableDash">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Descripción</th>
+                                                                <th>Status</th>
+
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <?php
+                                                            $tareas = $db /*->debug()*/->select(
+                                                                "tareas(t)",
+                                                                [
+                                                                    "t.id_tar",
+                                                                    "t.desc_tar",
+                                                                    "fechaentrega_tar",
+                                                                    "t.usr2_tar",
+                                                                    "t.status_tar"
+                                                                ],
+                                                                [
+                                                                    "OR" => [
+                                                                        "t.usr2_tar" => $id_usr
+                                                                    ]
+                                                                ]
+                                                            );
+                                                            foreach ($tareas as $tarea) {
+                                                            ?>
+                                                                <tr>
+                                                                    <td><?php echo $tarea["desc_tar"]; ?></td>
+                                                                    <td><?php echo $tarea["status_tar"]; ?></td>
+                                                                </tr>
+                                                            <?php
+                                                            }
+                                                            ?>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+
+                                            <div class="alert">
+                                                <h5><Table>Tiempo Tareas</Table></h5>
+                                                <hr />
+                                                <div class="col">
+                                                    <table class="mb-0 table table-bordered text-center" id="tableDash1">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Descripción</th>
+                                                                <th>Fecha</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <?php
+                                                            $tareas = $db /*->debug() */->select(
+                                                                "tareas(t)",
+                                                                [
+                                                                    "t.id_tar",
+                                                                    "t.desc_tar",
+                                                                    "fechaentrega_tar",
+                                                                    "t.usr2_tar",
+                                                                    "t.status_tar"
+                                                                ],
+                                                                [
+                                                                    "OR" => [
+                                                                        "t.usr2_tar" => $id_usr
+                                                                    ]
+                                                                ]
+                                                            );
+                                                            
+                                                            foreach ($tareas as $tarea) {
+                                                            ?>
+                                                                <tr>
+                                                                    <td><?php echo $tarea["desc_tar"]; ?></td>
+                                                                    <td><?php echo $tarea["fechaentrega_tar"]; ?></td>
+                                                                </tr>
+                                                            <?php
+                                                            }
+                                                            ?>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <!-- Footer -->
                     <?php include(ROOT_PATH . "/includes/footer.php"); ?>
@@ -41,10 +151,14 @@ if (isset($id_usr)) {
         <!-- /Full Container -->
         <script type="text/javascript" src="<?php echo constant("URL") ?>/assets/scripts/main.js"></script>
         <script src="<?php echo constant("URL") ?>/erp_modulos/modulos/main.js"></script>
+        <script src="https://unpkg.com/bootstrap-table@1.17.1/dist/bootstrap-table.min.js"></script>
+        <script>
+            $('#tableDash').bootstrapTable({})
+            $('#tableDash1').bootstrapTable({})
+        </script>
     </body>
 
     </html>
-
 <?php
 } else {
     header("Location:" . URL . "/erp_modulos/login/index.php");

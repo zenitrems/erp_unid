@@ -8,6 +8,7 @@ if (isset($id_usr)) {
     //Traer id del modulo actual
     $idModulo = $db->select("modulos", "id_modulo", ["nombre_modulo" => "multimoneda"]);
 ?>
+
     <!DOCTYPE html>
     <html lang="mx">
 
@@ -16,10 +17,17 @@ if (isset($id_usr)) {
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, 
         user-scalable=no, shrink-to-fit=no" />
         <link rel="stylesheet" href="<?php echo constant('URL') ?>/main.css" />
-        <link rel="stylesheet" href="<?php echo constant('URL') ?>/style.css" />
+        <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
         <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.17.1/dist/bootstrap-table.min.css">
-
-
+        <script src="<?php echo constant('URL') ?>/vendor/components/jquery/jquery.min.js"></script>
+        <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+        <style>
+            #search{
+                align-items: center;
+                margin-bottom: 10px;    
+                float: right;          
+            }
+        </style>
         <title>Multimoneda</title>
     </head>
 
@@ -58,6 +66,14 @@ if (isset($id_usr)) {
                             <div class="col-lg-12">
                                 <div class="main-card mb-3 card">
                                     <div class="card-body">
+                                        <div class="row" id="search">
+                                            <div class="col-md-6">
+                                                <input type="text" name="from_date" id="from_date" class="form-control" placeholder="Fecha" />
+                                            </div>
+                                            <div class="col-md-2">
+                                                <input type="button" name="filter" id="filter" value="Filtrar" class="btn btn-info" />
+                                            </div>
+                                        </div>
                                         <table class="mb-0 table table-bordered text-center" id="tableMultimoneda">
                                             <thead>
                                                 <tr>
@@ -69,7 +85,7 @@ if (isset($id_usr)) {
                                             </thead>
                                             <tbody>
                                                 <?php
-                                                $multimoneda = $db->select("multimoneda", "*", ["ORDER" => ["id" => "DESC"],]);
+                                                $multimoneda = $db->/* debug()-> */select("multimoneda", "*", ["ORDER" => ["id" => "DESC"],  "LIMIT" => 06]);
                                                 if ($multimoneda) {
                                                     foreach ($multimoneda as $row) {
                                                         # code...
@@ -77,7 +93,7 @@ if (isset($id_usr)) {
                                                         <tr>
                                                             <td><?php echo $row['source']; ?></td>
                                                             <td><?php echo $row['target']; ?></td>
-                                                            <td><?php echo $row['value']; ?></td>
+                                                            <td><?php echo $row['value']; ?>$</td>
                                                             <td><?php echo $row['updated']; ?></td>
                                                         </tr>
                                                 <?php
@@ -99,15 +115,9 @@ if (isset($id_usr)) {
             <!-- /Container app main -->
         </div>
         <!-- /Full Container -->
+        <script src="<?php echo constant('URL') ?>/erp_modulos/multimoneda/main.js"></script>
         <script type="text/javascript" src="<?php echo constant('URL') ?>/assets/scripts/main.js"></script>
-        <script src="<?php echo constant('URL') ?>/vendor/components/jquery/jquery.min.js"></script>
         <script src="https://unpkg.com/bootstrap-table@1.17.1/dist/bootstrap-table.min.js"></script>
-        <script>
-            $('#tableMultimoneda').bootstrapTable({
-                pagination: true,
-                search: true
-            })
-        </script>
     </body>
 
     </html>
