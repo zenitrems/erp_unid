@@ -77,9 +77,7 @@ if (isset($id_usr)) {
                                         <table class="mb-0 table table-bordered text-center" id="tableMultimoneda">
                                             <thead>
                                                 <tr>
-                                                    <th>Fuente</th>
-                                                    <th>Destino</th>
-                                                    <th>Factor</th>
+                                                    <th>Cambio</th>
                                                     <th>Actualizado</th>
                                                 </tr>
                                             </thead>
@@ -91,9 +89,7 @@ if (isset($id_usr)) {
                                                         # code...
                                                 ?>
                                                         <tr>
-                                                            <td><?php echo $row['source']; ?></td>
-                                                            <td><?php echo $row['target']; ?></td>
-                                                            <td><?php echo $row['value']; ?>$</td>
+                                                            <td><?php echo $row['source'],"=>",$row['target'],"=",$row['value'],"$" ?></td>                                                      
                                                             <td><?php echo $row['updated']; ?></td>
                                                         </tr>
                                                 <?php

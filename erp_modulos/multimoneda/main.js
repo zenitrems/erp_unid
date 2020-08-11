@@ -3,7 +3,8 @@ $(document).ready(function () {
           
      })
      $.datepicker.setDefaults({
-          dateFormat: 'yy-mm-dd'
+          dateFormat: 'yy-mm-dd',
+          maxDate: '0'
      });
      $(function () {
           $("#from_date").datepicker();
@@ -21,9 +22,7 @@ $(document).ready(function () {
                          $('#tableMultimoneda').html(data);
                     }
                });
-          } else {
-               alert("Selecciona una fecha");
-          }
+          } 
      });
 });
 

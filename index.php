@@ -49,14 +49,14 @@ if (isset($id_usr)) {
                                         <div class="wrapper">
 
                                             <div class="alert">
-                                                <h5>Tareas completadas</h5>
+                                                <h5>Estatus tareas</h5>
                                                 <hr />
                                                 <div class="col">
                                                     <table class="mb-0 table table-bordered text-center" id="tableDash">
                                                         <thead>
                                                             <tr>
                                                                 <th>Descripción</th>
-                                                                <th>Status</th>
+                                                                <th>Estatus</th>
 
                                                             </tr>
                                                         </thead>
@@ -92,7 +92,7 @@ if (isset($id_usr)) {
                                             </div>
 
                                             <div class="alert">
-                                                <h5><Table>Tiempo Tareas</Table></h5>
+                                                <h5>Fecha de entrega</h5>
                                                 <hr />
                                                 <div class="col">
                                                     <table class="mb-0 table table-bordered text-center" id="tableDash1">
